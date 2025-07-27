@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="bg-black text-white py-16 px-6">
+    <header className="bg-black  text-white py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
           Hello! I'm
@@ -26,37 +26,36 @@ const Header = () => {
           </button>
         </div>
 
-        <div className="w-full relative md:w-60 md:h-60 mt-10">
-          <div className="w-1/2 mx-auto">
+        <div className="w-full lg:w-full pt-5 lg:pb-110 relative md:w-60 md:h-60 mt-10">
+          <div className="w-1/2  mx-auto">
             <img
               src="./Banner.png"
               alt="Al Mamun Khan"
               className="w-full h-full object-cover relative"
             />
           </div>
-          <div className="">
-            <div className="flex items-center gap-2 absolute top-0 left-20 rounded-lg border px-5 py-2 bg-gray-400/70">
-              HTML
+          <div className="w-full">
+            <div className="flex rounded-full items-center gap-2 lg:gap-10  lg:w-40 lg:left-40 absolute top-0 left-20   border-3 border-gold px-4 py-1 bg-gray-400/70">
+              <h2>Html </h2>
               <img src="./html.svg" alt="" className="w-10 " />
             </div>
-
-            <div className="flex items-center gap-3 absolute top-0 right-20 rounded-lg border px-5 py-2   bg-gray-400/70">
+            <div className="flex items-center gap-3 lg:gap-10 lg:right-40  absolute top-0 right-20 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
               <h2>CSS </h2>
               <img src="./css.svg" alt="" className="w-10" />
             </div>
-            <div className="flex items-center gap-3 absolute top-30 right-0 rounded-lg border px-5 py-2   bg-gray-400/70">
+            <div className="flex items-center gap-3 g:gap-10  lg:w-40 lg:top-60  absolute top-30 right-0 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
               <h2>Bootstrap </h2>
               <img src="./bootstrap.svg" alt="" className="w-10" />
             </div>
-            <div className="flex items-center gap-3 absolute top-30 left-5 rounded-lg border px-5 py-2   bg-gray-400/70">
+            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 lg:top-60 absolute top-30 left-5 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
               <h2>Tailwind </h2>
               <img src="./tailwind.svg" alt="" className="w-10" />
             </div>
-            <div className="flex items-center gap-3 absolute bottom-0 left-15 rounded-lg border px-5 py-2  bg-gray-400/70">
+            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 absolute lg:-bottom-20 bottom-0 left-15 rounded-lg border-3 border-gold px-4 py-1  bg-gray-400/70">
               <h2>Raect </h2>
               <img src="./react.svg" alt="" className="w-10" />
             </div>
-            <div className="flex items-center gap-3 absolute bottom-0 right-15 rounded-lg border px-5 py-2  bg-gray-400/70">
+            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 lg:-bottom-20 lg:right-15 absolute bottom-0 right-15 rounded-lg border-3 border-gold px-4 py-1  bg-gray-400/70">
               <h2>JS</h2>
               <img src="./js.svg" alt="" className="w-10" />
             </div>
