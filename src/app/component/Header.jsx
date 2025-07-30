@@ -3,42 +3,42 @@ const skills = [
   {
     text: "Html",
     icon: "./html.svg",
-    position: "top-[0%] left-0 sm:left-20 lg:left-50",
+    position: "top-[0%] left-[0%] sm:left-[10%]",
   },
   {
     text: "Bootstrap",
     icon: "./bootstrap.svg",
-    position: "top-[0%] right-0 sm:left-20 lg:left-50",
+    position: "top-[0%] right-[0%] sm:right-[10%]",
   },
   {
     text: "CSS",
     icon: "./css.svg",
-    position: "top-[30%] left-0 sm:right-20 lg:right-50",
+    position: "top-[30%] left-0 sm:left-[0%]",
   },
   {
     text: "Sass",
     icon: "./sass.svg",
-    position: "top-[30%] right-0 sm:left-20 lg:left-50",
+    position: "top-[30%] right-0 sm:right-[0%] ",
   },
   {
     text: "JS",
     icon: "./js.svg",
-    position: "top-[60%] left-0 sm:left-20 lg:left-50",
+    position: "top-[60%] left-0  sm:left-[0%]",
   },
   {
     text: "Next",
     icon: "./next.svg",
-    position: "top-[60%] right-0 sm:left-20 lg:left-50",
+    position: "top-[60%] right-0 sm:right-[0%]",
   },
   {
     text: "React",
     icon: "./react.svg",
-    position: "top-[90%] left-0 sm:left-20 lg:left-50",
+    position: "top-[90%] left-0 sm:left-[5%] ",
   },
   {
     text: "Tailwind",
     icon: "./tailwind.svg",
-    position: "top-[90%] right-0 sm:left-20 lg:left-50",
+    position: "top-[90%] right-0 sm:right-[5%]",
   },
 ];
 
@@ -76,17 +76,17 @@ const Header = () => {
             <img
               src="./Banner.png"
               alt="Al Mamun Khan"
-              className="w-full h-full object-cover relative hover:scale-110 transition duration-300 hover:shadow-yellow-400/30"
+              className="w-screen object-cover relative hover:scale-110 transition duration-300 hover:shadow-yellow-400/30"
             />
           </div>
 
-          <div className="w-full">
+          <div className="w-full md:grid md:grid-cols-4 md:gap-10 pt-10">
             {skills.map((s, idx) => (
               <div
                 key={idx}
                 className={`
             ${s.position} 
-            absolute  hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between sm:w-30 md:w-35 md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
+            absolute md:static  hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between sm:w-30 md:w-35 md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
               >
                 <h2 className="text-sm md:text-lg font-bold italic ">
                   {s.text}{" "}
