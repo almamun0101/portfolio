@@ -1,4 +1,46 @@
 import React from "react";
+const skills = [
+  {
+    text: "Html",
+    icon: "./html.svg",
+    position: "top-[0%] left-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "Bootstrap",
+    icon: "./bootstrap.svg",
+    position: "top-[0%] right-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "CSS",
+    icon: "./css.svg",
+    position: "top-[30%] left-0 sm:right-20 lg:right-50",
+  },
+  {
+    text: "Sass",
+    icon: "./sass.svg",
+    position: "top-[30%] right-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "JS",
+    icon: "./js.svg",
+    position: "top-[60%] left-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "Next",
+    icon: "./next.svg",
+    position: "top-[60%] right-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "React",
+    icon: "./react.svg",
+    position: "top-[90%] left-0 sm:left-20 lg:left-50",
+  },
+  {
+    text: "Tailwind",
+    icon: "./tailwind.svg",
+    position: "top-[90%] right-0 sm:left-20 lg:left-50",
+  },
+];
 
 const Header = () => {
   return (
@@ -25,40 +67,34 @@ const Header = () => {
             Hire Me
           </button>
         </div>
+        <div className="bg-red-500 sm:bg-green-500 md:bg-blue-500 lg:bg-purple-500">
+          .......
+        </div>
 
-        <div className="w-full lg:w-full pt-5 lg:pb-110 relative md:w-60 md:h-60 mt-10">
+        <div className="w-full  pt-5 lg:pb-110 relative mt-10">
           <div className="w-1/2  mx-auto">
             <img
               src="./Banner.png"
               alt="Al Mamun Khan"
-              className="w-full h-full object-cover relative"
+              className="w-full h-full object-cover relative hover:scale-110 transition duration-300 hover:shadow-yellow-400/30"
             />
           </div>
+
           <div className="w-full">
-            <div className="flex rounded-full items-center gap-2 lg:gap-10  lg:w-40 lg:left-40 absolute top-0 left-20   border-3 border-gold px-4 py-1 bg-gray-400/70">
-              <h2>Html </h2>
-              <img src="./html.svg" alt="" className="w-10 " />
-            </div>
-            <div className="flex items-center gap-3 lg:gap-10 lg:right-40  absolute top-0 right-20 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
-              <h2>CSS </h2>
-              <img src="./css.svg" alt="" className="w-10" />
-            </div>
-            <div className="flex items-center gap-3 g:gap-10  lg:w-40 lg:top-60  absolute top-30 right-0 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
-              <h2>Bootstrap </h2>
-              <img src="./bootstrap.svg" alt="" className="w-10" />
-            </div>
-            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 lg:top-60 absolute top-30 left-5 rounded-lg border-3 border-gold px-4 py-1   bg-gray-400/70">
-              <h2>Tailwind </h2>
-              <img src="./tailwind.svg" alt="" className="w-10" />
-            </div>
-            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 absolute lg:-bottom-20 bottom-0 left-15 rounded-lg border-3 border-gold px-4 py-1  bg-gray-400/70">
-              <h2>Raect </h2>
-              <img src="./react.svg" alt="" className="w-10" />
-            </div>
-            <div className="flex items-center gap-3 lg:gap-10 lg:w-50 lg:-bottom-20 lg:right-15 absolute bottom-0 right-15 rounded-lg border-3 border-gold px-4 py-1  bg-gray-400/70">
-              <h2>JS</h2>
-              <img src="./js.svg" alt="" className="w-10" />
-            </div>
+            {skills.map((s, idx) => (
+              <div
+                key={idx}
+                className={`
+            ${s.position} 
+            absolute  hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between sm:w-30 md:w-35 md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
+              >
+                <h2 className="text-sm md:text-lg font-bold italic ">
+                  {s.text}{" "}
+                </h2>
+                <img src={s.icon} alt={s.text} className="w-5 sm:w-8" />
+                {console.log(s.position)}
+              </div>
+            ))}
           </div>
         </div>
 

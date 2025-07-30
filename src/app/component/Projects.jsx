@@ -43,53 +43,110 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div>
-       <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
-      <h2 className="text-4xl font-extrabold text-center mb-16">
-        My Projects
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          {projects.map((p, i) => (
-            <div
-              key={i}
-              className="border border-gray-500 px-5 py-5 rounded-2xl duration-300 hover:bg-white/20 hover:translate-y-1 flex flex-col justify-between z-50  hover:shadow-[0_0_30px_#facc15] overflow-hidden group"
-            >
-              <div className="">
-                <div className="flex items-center gap-3 ">
+   <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
+  <h2 className="text-4xl font-extrabold text-center mb-16">💼 My Projects</h2>
 
-                <div className="flex  gap-2 items-center group-hover:bg-white/60 p-1 rounded-full duration-200 transition group-hover:scale-120">
-                  {techIcons[p.based]}
-                </div>
-                  <h3 className="text-white italic group-hover:text-gold text-xl font-semibold transition duration-300">
-                    {p?.name}
-                  </h3>
-                </div>
-                <div className="italic flex justify-between  pt-5 text-sm text-gold">
-                  <a href={p.github}
-                target="_blank"
-                rel="noopener noreferrer" className="underline hover:text-yellow-100">
-                    Git Code
-                  </a>
-                  <a  href={p.github}
-                target="_blank"
-                rel="noopener noreferrer"className="underline hover:text-yellow-100">
-                    Live Preview
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+    {projects.map((p, i) => (
+      <div
+        key={i}
+        className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-white/5 backdrop-blur-md p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_#facc15]"
+      >
+        {/* Icon Badge */}
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center shadow-md group-hover:scale-110 transition">
+            {techIcons[p.based]}
+          </div>
+
+          {/* Title */}
+          <div>
+            <h3 className="text-xl font-semibold group-hover:text-yellow-400 transition">
+              {p.name}
+            </h3>
+            <p className="text-sm text-gray-400 italic">{p.cat}</p>
+          </div>
         </div>
-        {/* 
-        <div className="absolute animate-pulse  top-[30%] left-20 bg-gold w-50 h-50 rounded-full blur-2xl hover:bg-yellow-400 duration-300 transform-3d">
-          
+
+        {/* Links */}
+        <div className="mt-6 flex justify-between text-sm text-yellow-300 font-medium">
+          <a
+            href={p.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-500 underline"
+          >
+            GitHub Code
+          </a>
+          <a
+            href={p.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-500 underline"
+          >
+            Live Preview
+          </a>
         </div>
-        <div className="absolute bottom-[5%] right-20 bg-gold w-50 h-50 rounded-full blur-2xl hover:bg-yellow-400 duration-300 transform-3d">
-          
-        </div> */}
       </div>
-    </div>
+    ))}
+  </div>
+
+  {/* Blurred Bubbles */}
+  <div className="absolute top-[30%] left-10 w-[180px] h-[180px] bg-yellow-400 rounded-full blur-3xl opacity-20 animate-pulse" />
+  <div className="absolute bottom-10 right-10 w-[200px] h-[200px] bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse delay-300" />
+</div>
   );
 };
 
 export default Projects;
+
+<div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
+  <h2 className="text-4xl font-extrabold text-center mb-16">💼 My Projects</h2>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+    {projects.map((p, i) => (
+      <div
+        key={i}
+        className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-white/5 backdrop-blur-md p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_#facc15]"
+      >
+        {/* Icon Badge */}
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center shadow-md group-hover:scale-110 transition">
+            {techIcons[p.based]}
+          </div>
+
+          {/* Title */}
+          <div>
+            <h3 className="text-xl font-semibold group-hover:text-yellow-400 transition">
+              {p.name}
+            </h3>
+            <p className="text-sm text-gray-400 italic">{p.cat}</p>
+          </div>
+        </div>
+
+        {/* Links */}
+        <div className="mt-6 flex justify-between text-sm text-yellow-300 font-medium">
+          <a
+            href={p.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-500 underline"
+          >
+            GitHub Code
+          </a>
+          <a
+            href={p.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-500 underline"
+          >
+            Live Preview
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Blurred Bubbles */}
+  <div className="absolute top-[30%] left-10 w-[180px] h-[180px] bg-yellow-400 rounded-full blur-3xl opacity-20 animate-pulse" />
+  <div className="absolute bottom-10 right-10 w-[200px] h-[200px] bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse delay-300" />
+</div>;

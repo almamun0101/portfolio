@@ -1,32 +1,39 @@
-import React from 'react'
+import React from 'react';
 
 const About = () => {
   return (
-    <div>
-        <div className="w-full mx-auto h-screen bg-gradient-to-r from-gray-800 to-gray-900 text-white">
-            <h2 className='p-10 text-gold text-2xl font-bold text-center'>About Me</h2>
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 py-10">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-10">About Me</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap- mx-auto w-full">
-                <div className="border-2 bg-white/50 border-gold rounded-lg p-5 m-10  hover:bg-white/70 hover:text-yellow-500 duration-300">
-                    <h3 className='text-gold text-xl font-semibold'>Who I Am</h3>
-                    <p className='text-gray-800 mt-2'>I am a passionate web</p>
-                    <p className='text-gray-800'>developer with a love for creating beautiful and functional user interfaces.</p>
-                    <p className='text-gray-800'>With a background in design and development, I strive to bridge the gap between aesthetics and functionality.</p>
-                </div>
-                <div className="border-2 border-gold rounded-lg p-5 m-10 hover:bg-white/70 hover:text-yellow-500 duration-300 bg-white/50">
-                    <h3 className='text-gold text-xl font-semibold'>My Skills</h3>
-                    <ul className='list-disc list-inside text-gray-800 mt-2'>
-                        <li>HTML, CSS, JavaScript</li>
-                        <li>React, Redux</li>
-                        <li>Responsive Design</li>
-                        <li>UI/UX Design Principles</li>
-                        <li>Version Control (Git)</li>
-                    </ul> 
-                </div>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Who I Am Card */}
+        <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+          <h3 className="text-xl font-semibold text-yellow-400 mb-4">Who I Am</h3>
+          <p className="text-gray-300 mb-2">
+            I am a passionate web developer dedicated to building clean, modern, and efficient digital experiences.
+          </p>
+          <p className="text-gray-300 mb-2">
+            My background combines both design aesthetics and front-end coding skills, allowing me to deliver visually appealing and performant interfaces.
+          </p>
+          <p className="text-gray-300">
+            I thrive on turning complex problems into intuitive, user-friendly designs.
+          </p>
         </div>
-    </div>
-  )
-}
 
-export default About
+        {/* My Skills Card */}
+        <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+          <h3 className="text-xl font-semibold text-yellow-400 mb-4">My Skills</h3>
+          <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+            <li>React.js, Redux Toolkit</li>
+            <li>Responsive Web Design</li>
+            <li>UI/UX Design & Prototyping</li>
+            <li>Version Control with Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;
