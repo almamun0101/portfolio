@@ -44,13 +44,13 @@ const projects = [
 const Projects = () => {
   return (
    <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
-  <h2 className="text-4xl font-extrabold text-center mb-16">💼 My Projects</h2>
+  <h2 className="text-4xl font-extrabold text-center mb-16">Projects</h2>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
     {projects.map((p, i) => (
       <div
         key={i}
-        className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-white/5 backdrop-blur-md p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_#facc15]"
+        className="group z-50 relative overflow-hidden rounded-2xl border border-gray-700 bg-white/5 backdrop-blur-md p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_#facc15]"
       >
         {/* Icon Badge */}
         <div className="flex items-center gap-4">

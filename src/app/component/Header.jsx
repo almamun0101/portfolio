@@ -44,11 +44,13 @@ const skills = [
 
 const Header = () => {
   return (
-    <header className="bg-black  text-white py-16 px-6">
+    <header className="bg-black  text-white py-6 md:py-16 lg:py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
           Hello! I'm
-          <span className="text-gold ml-3 animate-pulse">Al Mamun Khan</span>
+          <span className="text-gold ml-3 flex flex-wrap md:inline lg:inline animate-pulse">
+            Al Mamun Khan
+          </span>
         </h1>
 
         <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
@@ -67,31 +69,31 @@ const Header = () => {
             Hire Me
           </button>
         </div>
-        <div className="bg-red-500 sm:bg-green-500 md:bg-blue-500 lg:bg-purple-500">
-          .......
-        </div>
 
-        <div className="w-full  pt-5 lg:pb-110 relative mt-10">
-          <div className="w-1/2  mx-auto">
+        <div className="w-full lg:h-[80vh] pt-5 relative  lg:mt-15 ">
+          <div className="w-full max-w-[500px] mx-auto relative z-10">
             <img
               src="./Banner.png"
-              alt="Al Mamun Khan"
-              className="w-screen object-cover relative hover:scale-110 transition duration-300 hover:shadow-yellow-400/30"
+              className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
             />
           </div>
 
-          <div className="w-full md:grid md:grid-cols-4 md:gap-10 pt-10">
+          <div className="w-full  grid grid-cols-3 gap-1 my-10">
             {skills.map((s, idx) => (
               <div
                 key={idx}
                 className={`
             ${s.position} 
-            absolute md:static  hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between sm:w-30 md:w-35 md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
+            lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
               >
-                <h2 className="text-sm md:text-lg font-bold italic ">
+                <h2 className="text-sm md:text-lg lg:text-2xl font-bold italic ">
                   {s.text}{" "}
                 </h2>
-                <img src={s.icon} alt={s.text} className="w-5 sm:w-8" />
+                <img
+                  src={s.icon}
+                  alt={s.text}
+                  className="w-5 sm:w-8 md:w-10 lg:w-10"
+                />
                 {console.log(s.position)}
               </div>
             ))}
@@ -99,7 +101,7 @@ const Header = () => {
         </div>
 
         {/* Optional: Scroll down arrow */}
-        <div className="mt-10 animate-bounce">
+        <div className="md:mt-10 lg:mt-10 animate-bounce">
           <span className="text-gold text-xl">↓</span>
         </div>
       </div>
