@@ -3,13 +3,15 @@ import Navbar from "../component/Navbar";
 import Header from "../component/Header";
 import About from "../component/About";
 import Projects from "../component/Projects";
+import Profile from "../component/Profile";
 const Home = () => {
   return (
-    <div>
+    <div className="mx-auto bg-black w-full ">
       <Navbar />
       <Header />
       <About />
       <Projects/>
+      <Profile/>
     </div>
   );
 };

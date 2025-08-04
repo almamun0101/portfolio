@@ -134,6 +134,8 @@ const Projects = () => {
   };
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
+     <div className="container">
+
       <h2 className="text-3xl  items-center mx-auto font-extrabold text-center mb-16">
         <span className="italic p-5 text-6xl text-gold font-extrabold">
           {projects.length}
@@ -200,10 +202,18 @@ const Projects = () => {
           );
         })}
       </div>
+      <div className="flex justify-center items-center my-10">
+        
+        <a className="  px-5 py-2 flex items-center gap-5  rounded-full font-medium transition-all bg-gold/10 text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
+         <FaGithub className="border border-gold rounded-full " size={25}/>
+         My Git
+          </a>
+      </div>
 
       {/* Blurred Bubbles */}
       <div className="absolute top-[30%] left-10 w-[180px] h-[180px] bg-yellow-400 rounded-full blur-3xl opacity-20 animate-pulse" />
       <div className="absolute bottom-10 right-10 w-[200px] h-[200px] bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse delay-300" />
+     </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React from 'react';
 const About = () => {
   return (
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 py-10">
+    <div className="container py-30">
       <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-10">About Me</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -32,6 +33,8 @@ const About = () => {
           </ul>
         </div>
       </div>
+    </div>
+
     </div>
   );
 };

@@ -45,6 +45,8 @@ const skills = [
 const Header = () => {
   return (
     <header className="bg-black  text-white py-6 md:py-16 lg:py-16 px-6">
+      <div className="container">
+
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
           Hello! I'm
@@ -104,6 +106,7 @@ const Header = () => {
         <div className="md:mt-10 lg:mt-10 animate-bounce">
           <span className="text-gold text-xl">↓</span>
         </div>
+      </div>
       </div>
     </header>
   );

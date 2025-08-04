@@ -9,6 +9,8 @@ const Navbar = () => {
 
   return (
     <header className="p-5">
+      <div className="container">
+
       <nav className="bg-white px-5 py-3 rounded-full flex justify-between items-center shadow-md relative">
         <a href="/" className="font-bold text-xl text-black">Al Mamun Khan</a>
 
@@ -39,6 +41,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
+      </div>
     </header>
   );
 };
