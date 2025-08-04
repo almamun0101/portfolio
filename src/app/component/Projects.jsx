@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { FaReact } from "react-icons/fa";
 import { SiTailwindcss, SiNextdotjs, SiMongodb } from "react-icons/si";
-import { FaHtml5 ,FaJs ,FaSass,FaCss3 ,FaBootstrap   } from "react-icons/fa";
+import { FaHtml5 ,FaJs ,FaSass,FaCss3 ,FaBootstrap, FaGithub,FaReact    } from "react-icons/fa";
+import { IoLogoFirebase } from "react-icons/io5";
 
 const techIcons = {
   React: <FaReact className="text-blue-400 text-2xl" />,
@@ -14,6 +14,9 @@ const techIcons = {
   Sass : <FaSass className="text-pink-300 text-2xl" />,
   Css : <FaCss3  className="text-blue-500 text-2xl" />,
   Bootstrap  : <FaBootstrap   className="text-violet-600 text-2xl" />,
+  Firebase  : <IoLogoFirebase   className="text-red-400 text-2xl" />,
+  Git  : <FaGithub   className="text-black text-2xl" />,
+
 };
 
 const projects = [
@@ -22,7 +25,7 @@ const projects = [
     cat: "E-commerce",
     based: "React",
     img: "/chattingapp.png",
-    tech: ["Tailwind", "Html", "React"],
+    tech: ["Tailwind", "Html", "React","Firebase","Git","Html","Js"],
     github: "https://github.com/almamun0101/Chatting-App",
     live: "https://chattingappalmamun0101.netlify.app",
   },
@@ -31,7 +34,7 @@ const projects = [
     cat: "Content",
     based: "Nextjs",
     img: "/protfolio.png",
-    tech: ["Nextjs", "React", "Tailwind"],
+    tech: ["Nextjs", "React", "Tailwind","Git","Html","Js"],
     github: "https://github.com/almamun0101/portfolio",
     live: "https://almamun0101.netlify.app/",
   },
@@ -40,7 +43,7 @@ const projects = [
     cat: "Portfolio",
     based: "React",
     img: "/vegitablemart.png",
-    tech: ["React", "Tailwind","Js"],
+    tech: ["React", "Tailwind","Git","Html","Js"],
     github: "https://github.com/almamun0101/E-mart",
     live: "https://e-martalmamun0101.netlify.app/",
   },
@@ -49,7 +52,7 @@ const projects = [
     cat: "Productivity",
     based: "MERN",
     img: "/fineset.png",
-    tech: ["Sass", "Html", "Css","Bootstrap"],
+    tech: ["Sass", "Git","Html", "Css","Bootstrap"],
     github: "https://github.com/almamun0101/finsweet",
     live: "https://finsweetalmamun0101.netlify.app/",
   },
@@ -58,7 +61,7 @@ const projects = [
     cat: "Content",
     based: "React",
     img: "/gammerweb.png",
-    tech: ["React","Tailwind",  "Html"],
+    tech: ["React","Tailwind", "Git", "Html"],
     github: "https://github.com/almamun0101/Gamer-web",
     live: "https://gamerwebalmamunkha.netlify.app/",
   },
@@ -67,7 +70,7 @@ const projects = [
     cat: "Content",
     based: "Bootstrap",
     img: "/hancok.png",
-    tech: ["Bootstrap", "Html", "Css"],
+    tech: ["Bootstrap", "Git","Html", "Css"],
     github: "https://github.com/almamun0101/honcok",
     live: "https://honcokalmamun0101.netlify.app/",
   },
@@ -76,7 +79,7 @@ const projects = [
     cat: "Content",
     based: "React",
     img: "/holmberg.png",
-    tech: ["React", "Tailwind", "Html","Js"],
+    tech: ["React", "Tailwind","Git", "Html","Js"],
     github: "https://github.com/almamun0101/Holmberg",
     live: "https://holmbergalmamun0101.netlify.app/",
   },
@@ -85,7 +88,7 @@ const projects = [
     cat: "Content",
     based: "Sass",
     img: "/innovate.png",
-    tech: ["Sass", "Html", "Css","Js"],
+    tech: ["Sass","Git", "Html", "Css","Js"],
     github: "https://github.com/almamun0101/innovate",
     live: "https://innovatealmamun0101.netlify.app/",
   },
@@ -94,7 +97,7 @@ const projects = [
     cat: "Content",
     based: "Tailwind",
     img: "/omah.png",
-    tech: ["Tailwind", "Html", "React"],
+    tech: [ "Html", "Css" , "Git"],
     github: "https://github.com/almamun0101/omah",
     live: "https://omahalmamun0101.netlify.app/",
   },
@@ -103,7 +106,7 @@ const projects = [
     cat: "Content",
     based: "Tailwind",
     img: "/sauldesign.png",
-    tech: ["Tailwind", "Html", "React"],
+    tech: ["React", "Tailwind","Html", "Git","Js"],
     github: "https://github.com/almamun0101/SaulDesign",
     live: "https://sauldesign-almamun0101.netlify.app/",
   },
@@ -112,7 +115,7 @@ const projects = [
     cat: "Content",
     based: "Tailwind",
     img: "/todolist.png",
-    tech: ["Tailwind", "Html", "React"],
+    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://todolistalmamunkhan0101.netlify.app/",
   },
@@ -171,7 +174,7 @@ const Projects = () => {
               </div>
               <div className="">
                 <h2>Tech I Used </h2>
-                <div className=" flex gap-3 p-2">{getIcon(p?.tech)}</div>
+                <div className=" flex flex-wrap gap-3 p-2">{getIcon(p?.tech)}</div>
               </div>
 
               {/* Links */}
