@@ -80,9 +80,9 @@ const projects = [
     name: "SaulDesign",
     cat: "Content",
     based: "Tailwind",
-    img: "",
+    img: "/sauldesign.png",
     github: "https://github.com/almamun0101/SaulDesign",
-    live: "https://sauldesignalmamun0101.netlify.app/",
+    live: "https://sauldesign-almamun0101.netlify.app/",
   },
   {
     name: "To Do List",
@@ -91,6 +91,14 @@ const projects = [
     img: "/todolist.png",
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://todolistalmamunkhan0101.netlify.app/",
+  },
+  {
+    name: "Protfolio",
+    cat: "Content",
+    based: "Tailwind",
+    img: "/protfolio.png",
+    github: "https://github.com/almamun0101/portfolio",
+    live: "https://almamun0101.netlify.app/",
   },
 ];
 
