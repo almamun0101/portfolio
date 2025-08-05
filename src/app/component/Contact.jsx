@@ -1,4 +1,8 @@
 import React from "react";
+import { FaUser,FaMobileAlt  } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+
 const contacts = [
   {
     name: "LinkDin",
@@ -49,54 +53,53 @@ const Contact = () => {
           ))}
         </div>
         <img src="/3davater.png" alt="" className="w-100 mx-auto" />
-        <div className="bg-white  rounded-2xl mt-10 p-5 text-center text-black">
-          <h2>Contact Me</h2>
-         <form action="" className="p-5 md:p-10 max-w-4xl mx-auto">
-  {/* Row 1 */}
-  <div className="flex flex-col md:flex-row justify-between gap-5 mb-5">
-    <input
-      className="flex-1 border border-gray-500 p-3 rounded-2xl"
-      placeholder="First Name"
-      type="text"
-    />
-    <input
-      className="flex-1 border border-gray-500 p-3 rounded-2xl"
-      placeholder="Last Name"
-      type="text"
-    />
-  </div>
+        <div className="bg-white pt-5 rounded-2xl mt-10  text-center text-black">
+          <h2 className="text-3xl py-5 ">Contact Me</h2>
+          <form action="" className="p-10 max-w-4xl mx-auto">
+            <div className=" flex w-full flex-col md:flex-row justify-between mx-auto gap-5 mb-5">
+              <div className="relative w-full">
+                <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
+                <input
+                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100 "
+                  type="text"
+                   placeholder="Name*"
+                />
+              </div>
+              <div className="relative w-full">
+                <MdEmail className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
+                <input
+                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100 "
+                  placeholder="Email*"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div className=" flex w-full flex-col md:flex-row justify-between mx-auto gap-5 mb-5">
+              <div className="relative w-full">
+                <FaMobileAlt  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <input
+                  className="w-full pl-10 bg-gray-100 p-3 rounded-2xl focus:outline-none"
+                  placeholder="Mobile*"
+                  type="text"
+                />
+              </div>
+              <div className="relative w-full">
+                <BiCategory className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <input
+                  className="w-full pl-10 bg-gray-100 p-3 rounded-2xl focus:outline-none"
+                  placeholder="Subject*"
+                  type="text"
+                />
+              </div>
+            </div>
 
-  {/* Row 2 */}
-  <div className="flex flex-col md:flex-row justify-between gap-5 mb-5">
-    <input
-      className="flex-1 border border-gray-500 p-3 rounded-2xl"
-      placeholder="Email"
-      type="email"
-    />
-    <input
-      className="flex-1 border border-gray-500 p-3 rounded-2xl"
-      placeholder="Phone"
-      type="tel"
-    />
-  </div>
-
-  {/* Message */}
-  <div className="mb-5">
-    <textarea
-      className="border border-gray-500 w-full rounded-2xl p-4 min-h-[150px]"
-      placeholder="Your message..."
-    ></textarea>
-  </div>
-
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-2xl w-full md:w-auto"
-  >
-    Send Message
-  </button>
-</form>
-
+            <div className="">
+              <textarea placeholder="Your message here..." className="border w-full mt-5 rounded-2xl p-10 min-h-[150px]"></textarea>
+            </div>
+            <button className="bg-yellow-500 text-white px-10 mt-2 p-4 rounded-2xl ">
+                Send
+            </button>
+          </form>
         </div>
       </div>
     </div>
