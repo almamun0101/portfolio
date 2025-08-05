@@ -60,7 +60,7 @@ const Contact = () => {
               <div className="relative w-full">
                 <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
                 <input
-                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100 "
+                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100  focus:outline-none "
                   type="text"
                    placeholder="Name*"
                 />
@@ -68,7 +68,7 @@ const Contact = () => {
               <div className="relative w-full">
                 <MdEmail className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
                 <input
-                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100 "
+                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100  focus:outline-none"
                   placeholder="Email*"
                   type="text"
                 />
@@ -94,9 +94,9 @@ const Contact = () => {
             </div>
 
             <div className="">
-              <textarea placeholder="Your message here..." className="border w-full mt-5 rounded-2xl p-10 min-h-[150px]"></textarea>
+              <textarea placeholder="Your message here..." className=" focus:outline-none bg-gray-100 w-full mt-5 rounded-2xl p-10 min-h-[150px]"></textarea>
             </div>
-            <button className="bg-yellow-500 text-white px-10 mt-2 p-4 rounded-2xl ">
+            <button className="bg-yellow-500 text-white px-10 mt-2 p-4 rounded-2xl border-3 transition duration-300 font-bold border-transparent hover:bg-white/60 hover:text-gold hover:border-gold">
                 Send
             </button>
           </form>

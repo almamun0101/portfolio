@@ -5,6 +5,7 @@ import About from "../component/About";
 import Projects from "../component/Projects";
 import Profile from "../component/Profile";
 import Contact from "../component/Contact";
+import Footer from "../component/Footer";
 
 const Home = () => {
   return (
@@ -12,9 +13,10 @@ const Home = () => {
       <Navbar />
       <Header />
       <About />
-      <Projects/>
-      <Profile/>
-     <Contact/>
+      <Projects />
+      <Profile />
+      <Contact />
+      <Footer/>
     </div>
   );
 };
