@@ -12,17 +12,17 @@ const contacts = [
   {
     name: "Facebook",
     logo: "/fb.png",
-    link: "",
+    link: "https://www.facebook.com/mahan.khan.shahir/",
   },
   {
     name: "Gamil",
     logo: "/gmail.png",
-    link: "",
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=almamunkhan0101@gmail.com",
   },
   {
     name: "Whatsapp",
     logo: "/whatsapp.png",
-    link: "",
+    link: "https://wa.me/8801327119888",
   },
 ];
 
@@ -31,7 +31,7 @@ const Contact = () => {
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-20">
       <div className="container my-20">
         <h2 className="text-gold text-4xl font-bold text-center">
-          Connect With Me
+          Conect With Me
         </h2>
 
         <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 ">
@@ -45,10 +45,11 @@ const Contact = () => {
                 alt=""
                 className="w-15 group-hover:scale-110 duration-600"
               />
-              <h2 className="text-blue-400 text-2xl font-bold italic">
+              <a href={c.link} className="text-blue-400 text-2xl font-bold italic"  target="_blank">
                 {" "}
                 {c.name}{" "}
-              </h2>
+
+              </a>
             </div>
           ))}
         </div>
