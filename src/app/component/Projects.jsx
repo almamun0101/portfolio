@@ -119,6 +119,15 @@ const projects = [
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://todolistalmamunkhan0101.netlify.app/",
   },
+  {
+    name: "Planto",
+    cat: "Content",
+    based: "Nextjs",
+    img: "/todolist.png",
+    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
+    github: "https://github.com/almamun0101/to-do-list",
+    live: "https://plantoalmamun0101.netlify.app/",
+  },
 ];
 
 const Projects = () => {
