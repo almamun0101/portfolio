@@ -1,16 +1,37 @@
 import React from "react";
-import { FaFileDownload } from "react-icons/fa";
+import { FaFileDownload, FaEye } from "react-icons/fa";
+import { GrCertificate } from "react-icons/gr";
+
 const Certifcates = [
   {
-    img:"/HTML.jpg"
+    title:"Creative It",
+    logo : "/CIT.png",
+    text:"",
+    file:"",
+    img: "/HTML.jpg",
   },
   {
-    img:"/CSS.jpg"
+     title:"Brac",
+    logo : "/braclogo.png",
+    text:"",
+    file:"",
+    img: "/Brac.jpg",
   },
   {
-    img:"/Brac.jpg"
+     title:"Solo Learn",
+    logo : "/sololearn.png",
+    text:"",
+    file:"",
+    img: "/HTML.jpg",
   },
-]
+  {
+     title:"Solo Learn",
+    logo : "/sololearn.png",
+    text:"",
+    file:"",
+    img: "/CSS.jpg",
+  },
+];
 
 const Profile = () => {
   return (
@@ -38,16 +59,36 @@ const Profile = () => {
       </div>
 
       <div className="my-20 ">
-        <h2 className="text-center text-4xl font-bold ">Certifcate</h2>
+        <h2 className="text-center text-4xl font-bold text-gold ">
+          Certifcate
+        </h2>
 
-        <div className="gird grid-rows-1 lg:grid-cols-3 items-center mx-auto">
-         {Certifcates.map((c)=>
+        <div className="grid md:grid-cols-2 px-5 md:w-3/4 py-20  items-center mx-auto gap-5">
+          {Certifcates.map((c, index) => (
+            <div key={index} className="bg-white rounded-4xl p-4 text-black">
+              <div className="flex justify-between items-center">
+                <div className="bg-black rounded-4xl w-auto pr-5  flex items-center gap-2">
+                  <div className="w-15 h-15 rounded-full border-2 bg-white">
+                    <img src={c.logo} alt={c.name} />
+                  </div>
+                  <h2 className="text-gold text-xl font-bold">{c.title}</h2>
+                </div>
+                <div className="text-gold">
+                  <GrCertificate size={30} />
+                </div>
+              </div>
+            <img src={c.img} alt={c.name} />
+              <h2 className="text-3xl py-2 px-5 font-bold">
+                {c.text}
+              </h2>
+              <div className="bg-gray-300 text-center flex items-center justify-between  border-2 border-black/20 rounded-4xl px-5 py-3 w-1/3 md:w-1/5  ">
+                <FaEye />
 
-          <div className="my-10">
-            <img src={c.img} alt="" className="mx-auto w-100"/>
-          </div>
-
-        )}
+                <button>View</button>
+              </div>
+            </div>
+            
+          ))}
         </div>
       </div>
     </div>
