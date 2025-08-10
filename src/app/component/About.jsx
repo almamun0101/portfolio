@@ -99,8 +99,8 @@ const About = () => {
           ))}
         </div>
       </div>
-      
-      <div className="pb-30">
+
+      <div className="py-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
           Skill's
         </h2>
@@ -125,6 +125,28 @@ const About = () => {
           ))}
         </div>
       </div>
+
+       <div className="py-10">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
+          Design I Used
+        </h2>
+        <div className="flex justify-center flex-wrap gap-4">
+          {design.map((d, index) => (
+            <div
+              key={index}
+              className="bg-white flex gap-2 justify-between items-center pr-4  rounded-full hover:scale-110 trasition duration-200"
+            >
+              <img
+                src={d.logo}
+                alt=""
+                className="w-15 h-15 border bg-white  rounded-full hover:scale-110 trasition duration-200"
+              />
+              <h3 className="text-black ">{d.name}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };
