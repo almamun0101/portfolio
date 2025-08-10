@@ -29,6 +29,11 @@ const design = [
   { name: "Figma", logo: "/figma.png" },
   { name: "Adobe XD", logo: "/adobexd.png" },
 ];
+const tools = [
+  { name: "VS Code", logo: "/vscodelogo.png" },
+  { name: "Git Hub", logo: "/githublogo.png" },
+  { name: "Postman", logo: "/postmanlogo.png" },
+];
 
 const About = () => {
   const techIconsArray = Object.entries(techIcons);
@@ -92,7 +97,7 @@ const About = () => {
               <img
                 src={d.logo}
                 alt=""
-                className="w-15 h-15 border bg-white  rounded-full hover:scale-110 trasition duration-200"
+                className="w-10 h-10 border bg-white  rounded-full hover:scale-110 trasition duration-200"
               />
               <h3 className="text-black ">{d.name}</h3>
             </div>
@@ -128,18 +133,18 @@ const About = () => {
 
        <div className="py-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
-          Design I Used
+          Tools I Used
         </h2>
         <div className="flex justify-center flex-wrap gap-4">
-          {design.map((d, index) => (
+          {tools.map((d, index) => (
             <div
               key={index}
-              className="bg-white flex gap-2 justify-between items-center pr-4  rounded-full hover:scale-110 trasition duration-200"
+              className="bg-white flex gap-5 py-1 justify-between items-center px-4  rounded-full hover:scale-110 trasition duration-200"
             >
               <img
                 src={d.logo}
                 alt=""
-                className="w-15 h-15 border bg-white  rounded-full hover:scale-110 trasition duration-200"
+                className="w-10 h-10 border bg-white  rounded-full hover:scale-110 trasition duration-200"
               />
               <h3 className="text-black ">{d.name}</h3>
             </div>
