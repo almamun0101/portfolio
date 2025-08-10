@@ -25,11 +25,16 @@ const techIcons = {
   Git: <FaGithub className="text-black text-2xl" />,
 };
 
+const design = [
+  { name: "Figma", logo: "/figma.png" },
+  { name: "Adobe XD", logo: "/adobexd.png" },
+];
+
 const About = () => {
-  const techIconsArray =  Object.entries(techIcons)
-  const firstRow = techIconsArray?.slice(0,6)
-  const secRow = techIconsArray.slice(6)
-  
+  const techIconsArray = Object.entries(techIcons);
+  const firstRow = techIconsArray?.slice(0, 6);
+  const secRow = techIconsArray.slice(6);
+
   return (
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 py-5">
       <div className="container py-20">
@@ -73,27 +78,51 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="pb-30">
+
+      <div className="py-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
-          Skill
+          Design I Used
         </h2>
         <div className="flex justify-center flex-wrap gap-4">
-          {
-            firstRow.map(([key,value])=>
-            <div key={key} className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200">
+          {design.map((d, index) => (
+            <div
+              key={index}
+              className="bg-white flex gap-2 justify-between items-center pr-4  rounded-full hover:scale-110 trasition duration-200"
+            >
+              <img
+                src={d.logo}
+                alt=""
+                className="w-15 h-15 border bg-white  rounded-full hover:scale-110 trasition duration-200"
+              />
+              <h3 className="text-black ">{d.name}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="pb-30">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
+          Skill's
+        </h2>
+        <div className="flex justify-center flex-wrap gap-4">
+          {firstRow.map(([key, value]) => (
+            <div
+              key={key}
+              className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200"
+            >
               {value}
             </div>
-            )
-          }
+          ))}
         </div>
         <div className="flex justify-center flex-wrap gap-4 mt-5">
-          {
-            secRow.map(([key,value])=>
-            <div key={key} className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200">
+          {secRow.map(([key, value]) => (
+            <div
+              key={key}
+              className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200"
+            >
               {value}
             </div>
-            )
-          }
+          ))}
         </div>
       </div>
     </div>

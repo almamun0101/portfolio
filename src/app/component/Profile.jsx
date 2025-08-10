@@ -63,7 +63,7 @@ const Profile = () => {
           Certifcate
         </h2>
 
-        <div className="grid md:grid-cols-2 px-5 md:w-3/4 py-20  items-center mx-auto gap-5">
+        <div className="grid md:grid-cols-2 px-5 w-4/5 md:w-3/4 py-20  items-center mx-auto gap-5">
           {Certifcates.map((c, index) => (
             <div key={index} className="bg-white rounded-4xl p-4 text-black">
               <div className="flex justify-between items-center">

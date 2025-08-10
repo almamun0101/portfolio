@@ -15,14 +15,14 @@ const contacts = [
     link: "https://www.facebook.com/mahan.khan.shahir/",
   },
   {
-    name: "Gamil",
-    logo: "/gmail.png",
-    link: "https://mail.google.com/mail/?view=cm&fs=1&to=almamunkhan0101@gmail.com",
-  },
-  {
     name: "Whatsapp",
     logo: "/whatsapp.png",
     link: "https://wa.me/8801327119888",
+  },
+  {
+    name: "Gamil",
+    logo: "/gmail.png",
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=almamunkhan0101@gmail.com",
   },
 ];
 
