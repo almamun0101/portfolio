@@ -30,6 +30,24 @@ const projects = [
     live: "https://chattingappalmamun0101.netlify.app",
   },
   {
+    name: "Planto",
+    cat: "Content",
+    based: "Nextjs",
+    img: "/planto.png",
+    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
+    github: "https://github.com/almamun0101/to-do-list",
+    live: "https://plantoalmamun0101.netlify.app/",
+  },
+  {
+    name: "Exclusive",
+    cat: "E-shop",
+    based: "Nextjs",
+    img: "/Exclusive.png",
+    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
+    github: "https://github.com/almamun0101/exclusive",
+    live: "https://plantoalmamun0101.netlify.app/",
+  },
+  {
     name: "Protfolio",
     cat: "Content",
     based: "Nextjs",
@@ -119,24 +137,8 @@ const projects = [
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://todolistalmamunkhan0101.netlify.app/",
   },
-  {
-    name: "Planto",
-    cat: "Content",
-    based: "Nextjs",
-    img: "/planto.png",
-    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
-    github: "https://github.com/almamun0101/to-do-list",
-    live: "https://plantoalmamun0101.netlify.app/",
-  },
-  {
-    name: "Exclusive",
-    cat: "E-shop",
-    based: "Nextjs",
-    img: "/todolist.png",
-    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
-    github: "https://github.com/almamun0101/exclusive",
-    live: "https://plantoalmamun0101.netlify.app/",
-  },
+  
+  
 ];
 
 const Projects = () => {
