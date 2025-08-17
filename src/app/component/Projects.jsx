@@ -123,7 +123,7 @@ const projects = [
     name: "Planto",
     cat: "Content",
     based: "Nextjs",
-    img: "/todolist.png",
+    img: "/planto.png",
     tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://plantoalmamun0101.netlify.app/",
