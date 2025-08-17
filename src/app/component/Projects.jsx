@@ -128,6 +128,15 @@ const projects = [
     github: "https://github.com/almamun0101/to-do-list",
     live: "https://plantoalmamun0101.netlify.app/",
   },
+  {
+    name: "Exclusive",
+    cat: "E-shop",
+    based: "Nextjs",
+    img: "/todolist.png",
+    tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
+    github: "https://github.com/almamun0101/exclusive",
+    live: "https://plantoalmamun0101.netlify.app/",
+  },
 ];
 
 const Projects = () => {
