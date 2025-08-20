@@ -45,7 +45,7 @@ const projects = [
     img: "/Exclusive.png",
     tech: ["React", "Tailwind","Html", "Firebase","Js", "Git"],
     github: "https://github.com/almamun0101/exclusive",
-    live: "https://plantoalmamun0101.netlify.app/",
+    live: "https://exclusivealmamun0101.netlify.app/",
   },
   {
     name: "Protfolio",

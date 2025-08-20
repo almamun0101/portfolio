@@ -8,7 +8,7 @@ const Certifcates = [
     logo : "/CIT.png",
     text:"",
     file:"",
-    img: "/HTML.jpg",
+    img: "/onprocess.jpg",
   },
   {
      title:"Brac",
