@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { SiTailwindcss, SiNextdotjs, SiMongodb } from "react-icons/si";
 import {
@@ -11,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { Dock, DockIcon } from "@/components/magicui/dock";
 
 const techIcons = {
   React: <FaReact className="text-blue-400 text-2xl" />,
@@ -85,25 +87,25 @@ const About = () => {
           </motion.div>
 
           {/* My Skills Card */}
-           <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}>
-
-          <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-4">
-              My Skills
-            </h3>
-            <ul className="list-disc list-inside text-gray-300 space-y-2">
-              <li>HTML5, CSS3, JavaScript (ES6+)</li>
-              <li>React.js, Redux Toolkit</li>
-              <li>Responsive Web Design</li>
-              <li>UI/UX Design & Prototyping</li>
-              <li>Version Control with Git & GitHub</li>
-            </ul>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
+                My Skills
+              </h3>
+              <ul className="list-disc list-inside text-gray-300 space-y-2">
+                <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                <li>React.js, Redux Toolkit</li>
+                <li>Responsive Web Design</li>
+                <li>UI/UX Design & Prototyping</li>
+                <li>Version Control with Git & GitHub</li>
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </div>
 

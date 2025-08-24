@@ -7,49 +7,49 @@ const skills = [
     text: "Html",
     icon: "./html.svg",
     position: "top-[0%] left-[0%] sm:left-[10%]",
-    direction: { x: -100 }
+    direction: { x: -100 },
   },
   {
     text: "Bootstrap",
     icon: "./bootstrap.svg",
     position: "top-[0%] right-[0%] sm:right-[10%]",
-    direction: { x: 100 }
+    direction: { x: 100 },
   },
   {
     text: "CSS",
     icon: "./css.svg",
     position: "top-[30%] left-0 sm:left-[0%]",
-    direction: { x: -100 }
+    direction: { x: -100 },
   },
   {
     text: "Sass",
     icon: "./sass.svg",
     position: "top-[30%] right-0 sm:right-[0%] ",
-    direction: { x: 100 }
+    direction: { x: 100 },
   },
   {
     text: "JS",
     icon: "./js.svg",
     position: "top-[60%] left-0  sm:left-[0%]",
-    direction: { x: -100 }
+    direction: { x: -100 },
   },
   {
     text: "Next",
     icon: "./next.svg",
     position: "top-[60%] right-0 sm:right-[0%]",
-    direction: { x: 100 }
+    direction: { x: 100 },
   },
   {
     text: "React",
     icon: "./react.svg",
     position: "top-[90%] left-0 sm:left-[5%] ",
-    direction: { x: -100 }
+    direction: { x: -100 },
   },
   {
     text: "Tailwind",
     icon: "./tailwind.svg",
     position: "top-[90%] right-0 sm:right-[5%]",
-    direction: { x: 100 }
+    direction: { x: 100 },
   },
 ];
 
@@ -58,7 +58,7 @@ const Header = () => {
     <header className="bg-black  text-white py-6 md:py-16 lg:py-16 px-6">
       <div className="container">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
-          <div className="flex gap-2 items-center ">
+          <div className="flex flex-wrap justify-center gap-2 items-center ">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -124,32 +124,42 @@ const Header = () => {
           </div>
 
           <div className="w-full lg:h-[80vh] pt-5 relative  lg:mt-15 ">
-            <div className="w-full max-w-[500px] mx-auto relative z-10">
+           
+
+            <div className="w-full  grid grid-cols-3 gap-1 my-10">
+              {skills.map((s, idx) => (
+                <div key={idx} className="">
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, ...s.direction }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                  >
+                    <div
+                      className={`
+            ${s.position} 
+            lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
+                    >
+                      <h2 className="text-sm md:text-lg lg:text-2xl font-bold italic ">
+                        {s.text}{" "}
+                      </h2>
+                      <img
+                        src={s.icon}
+                        alt={s.text}
+                        className="w-5 sm:w-8 md:w-10 lg:w-10"
+                      />
+                      {console.log(s.position)}
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+             <div className="w-full max-w-[500px] mx-auto relative z-10">
               <img
                 src="./Banner.png"
                 className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
               />
-            </div>
-
-            <div className="w-full  grid grid-cols-3 gap-1 my-10">
-              {skills.map((s, idx) => (
-                <div
-                  key={idx}
-                  className={`
-            ${s.position} 
-            lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
-                >
-                  <h2 className="text-sm md:text-lg lg:text-2xl font-bold italic ">
-                    {s.text}{" "}
-                  </h2>
-                  <img
-                    src={s.icon}
-                    alt={s.text}
-                    className="w-5 sm:w-8 md:w-10 lg:w-10"
-                  />
-                  {console.log(s.position)}
-                </div>
-              ))}
             </div>
           </div>
 

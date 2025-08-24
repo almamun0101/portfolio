@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Navbar from "../component/Navbar";
 import Header from "../component/Header";
@@ -8,15 +8,17 @@ import Profile from "../component/Profile";
 import Contact from "../component/Contact";
 import Footer from "../component/Footer";
 import { motion } from "framer-motion";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 const Home = () => {
   return (
     <div className="mx-auto bg-black w-full ">
+      <ScrollProgress />
       <Navbar />
       <Header />
-     
+
       <About />
-    
+
       <Projects />
       <Profile />
       <Contact />
