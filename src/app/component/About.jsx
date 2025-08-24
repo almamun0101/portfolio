@@ -10,6 +10,7 @@ import {
   FaReact,
 } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const techIcons = {
   React: <FaReact className="text-blue-400 text-2xl" />,
@@ -43,32 +44,53 @@ const About = () => {
   return (
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 py-5">
       <div className="container py-20">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-10">
-          About Me
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className=""
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-10">
+            About Me
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Who I Am Card */}
-          <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
-            <h3 className="text-xl font-semibold text-yellow-400 mb-4">
-              Who I Am
-            </h3>
-            <p className="text-gray-300 mb-2">
-              I am a passionate web developer dedicated to building clean,
-              modern, and efficient digital experiences.
-            </p>
-            <p className="text-gray-300 mb-2">
-              My background combines both design aesthetics and front-end coding
-              skills, allowing me to deliver visually appealing and performant
-              interfaces.
-            </p>
-            <p className="text-gray-300">
-              I thrive on turning complex problems into intuitive, user-friendly
-              designs.
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
+                Who I Am
+              </h3>
+              <p className="text-gray-300 mb-2">
+                I am a passionate web developer dedicated to building clean,
+                modern, and efficient digital experiences.
+              </p>
+              <p className="text-gray-300 mb-2">
+                My background combines both design aesthetics and front-end
+                coding skills, allowing me to deliver visually appealing and
+                performant interfaces.
+              </p>
+              <p className="text-gray-300">
+                I thrive on turning complex problems into intuitive,
+                user-friendly designs.
+              </p>
+            </div>
+          </motion.div>
 
           {/* My Skills Card */}
+           <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}>
+
           <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
             <h3 className="text-xl font-semibold text-yellow-400 mb-4">
               My Skills
@@ -81,6 +103,7 @@ const About = () => {
               <li>Version Control with Git & GitHub</li>
             </ul>
           </div>
+        </motion.div>
         </div>
       </div>
 
@@ -131,7 +154,7 @@ const About = () => {
         </div>
       </div>
 
-       <div className="py-10">
+      <div className="py-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
           Tools I Used
         </h2>
@@ -151,7 +174,6 @@ const About = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };

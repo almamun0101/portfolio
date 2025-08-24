@@ -1,44 +1,55 @@
+"use client";
 import React from "react";
+import { animate, motion } from "framer-motion";
+
 const skills = [
   {
     text: "Html",
     icon: "./html.svg",
     position: "top-[0%] left-[0%] sm:left-[10%]",
+    direction: { x: -100 }
   },
   {
     text: "Bootstrap",
     icon: "./bootstrap.svg",
     position: "top-[0%] right-[0%] sm:right-[10%]",
+    direction: { x: 100 }
   },
   {
     text: "CSS",
     icon: "./css.svg",
     position: "top-[30%] left-0 sm:left-[0%]",
+    direction: { x: -100 }
   },
   {
     text: "Sass",
     icon: "./sass.svg",
     position: "top-[30%] right-0 sm:right-[0%] ",
+    direction: { x: 100 }
   },
   {
     text: "JS",
     icon: "./js.svg",
     position: "top-[60%] left-0  sm:left-[0%]",
+    direction: { x: -100 }
   },
   {
     text: "Next",
     icon: "./next.svg",
     position: "top-[60%] right-0 sm:right-[0%]",
+    direction: { x: 100 }
   },
   {
     text: "React",
     icon: "./react.svg",
     position: "top-[90%] left-0 sm:left-[5%] ",
+    direction: { x: -100 }
   },
   {
     text: "Tailwind",
     icon: "./tailwind.svg",
     position: "top-[90%] right-0 sm:right-[5%]",
+    direction: { x: 100 }
   },
 ];
 
@@ -47,33 +58,69 @@ const Header = () => {
     <header className="bg-black  text-white py-6 md:py-16 lg:py-16 px-6">
       <div className="container">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-            Hello! I'm
-            <span className="text-gold ml-3 flex flex-wrap md:inline lg:inline animate-pulse">
-              Al Mamun Khan
-            </span>
-          </h1>
+          <div className="flex gap-2 items-center ">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+                Hello! I'm
+              </h1>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h1 className=" text-5xl md:text-6xl text-gold ml-3 font-extrabold leading-tight animate-pulse">
+                Al Mamun Khan
+              </h1>
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
+              Front-End Developer | MERN Stack Developer
+            </h2>
 
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
-            Front-End Developer | MERN Stack Developer
-          </h2>
-
-          <p className="text-gray-400 text-sm md:text-base">
-            1 Year of Experience
-          </p>
+            <p className="text-gray-400 text-sm md:text-base">
+              1 Year of Experience
+            </p>
+          </motion.div>
 
           <div className="flex gap-4 mt-4 flex-wrap justify-center">
-            <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
-              Resume
-            </button>
-            <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
-              <a
-                href="/cv.pdf" // Place cv.pdf inside your public folder
-                download="cv.pdf" // Name for downloaded file
-                     >
-                Download CV
-              </a>
-            </button>
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
+                Resume
+              </button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
+                <a
+                  href="/cv.pdf" // Place cv.pdf inside your public folder
+                  download="cv.pdf" // Name for downloaded file
+                >
+                  Download CV
+                </a>
+              </button>
+            </motion.div>
           </div>
 
           <div className="w-full lg:h-[80vh] pt-5 relative  lg:mt-15 ">
