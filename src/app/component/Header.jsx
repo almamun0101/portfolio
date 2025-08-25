@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { animate, motion } from "framer-motion";
+import { Typewriter } from "@/components/magicui/typewriter";
 
 const skills = [
   {
@@ -55,7 +56,7 @@ const skills = [
 
 const Header = () => {
   return (
-    <header className="bg-black  text-white py-6 md:py-16 lg:py-16 px-6">
+    <header className="bg-black  text-white py-5 px-6">
       <div className="container">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
           <div className="flex flex-wrap justify-center gap-2 items-center ">
@@ -86,8 +87,21 @@ const Header = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
-              Front-End Developer | MERN Stack Developer
+            <h2 className="text-lg md:text-2xl font-semibold text-white">
+             <Typewriter
+            text={[
+              "Web Designer...",
+              "Frontend Developer...",
+              "Backend Develpoer (Onrolling)...",
+              "MERN Stack Developer...",
+              "Make your ideas to visable in Cloud",
+            ]}
+            speed={70}
+            className="text-yellow-500"
+            waitTime={1500}
+            deleteSpeed={40}
+            cursorChar={"_"}
+          />
             </h2>
 
             <p className="text-gray-400 text-sm md:text-base">

@@ -54,7 +54,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="p-5">
+    <header className="py-2">
       <div className="container">
         <nav className=" px-5 py-3 rounded-full flex md:flex-row flex-col gap-5  justify-between items-center shadow-md relative">
           <a href="/" className="px-10 h-[50px] rounded-full 

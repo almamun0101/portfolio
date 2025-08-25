@@ -7,9 +7,8 @@ import Projects from "../component/Projects";
 import Profile from "../component/Profile";
 import Contact from "../component/Contact";
 import Footer from "../component/Footer";
-import { motion } from "framer-motion";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import Navbar2 from "../component/Navbar2";
+
 
 const Home = () => {
   return (
