@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
 import { animate, motion } from "framer-motion";
+
 import { Typewriter } from "@/components/magicui/typewriter";
+import { ShootingStarsDemo } from "@/components/magicui/ShootingStarsDemo ";
+import { ShootingStars } from "@/components/magicui/shootingStar";
 
 const skills = [
   {
@@ -57,9 +60,17 @@ const skills = [
 const Header = () => {
   return (
     <header className="bg-black  text-white py-5 px-6">
-      <div className="container">
+       <div className="container">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
-          <div className="flex flex-wrap justify-center gap-2 items-center ">
+
+      <div className="pb-20 w-full bg-black relative overflow-hidden">
+        {/* Background with stars */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(0,0,0,0)_80%)]" />
+          <div className="stars absolute inset-0" />
+        </div>
+       <div className="relative z-10 flex flex-col  justify-center  text-center">
+        <div className="flex flex-wrap justify-center gap-2 items-center ">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -128,17 +139,19 @@ const Header = () => {
             >
               <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
                 <a
-                  href="/cv.pdf" // Place cv.pdf inside your public folder
-                  download="cv.pdf" // Name for downloaded file
+                  href="/Al Mamun khan CV For Frontend Dev.pdf" // Place cv.pdf inside your public folder
+                  download="Al Mamun khan CV For Frontend Dev.pdf" // Name for downloaded file
                 >
                   Download CV
                 </a>
               </button>
             </motion.div>
           </div>
+      </div>
 
-          <div className="w-full lg:h-[80vh] pt-5 relative  lg:mt-15 ">
-           
+          {/* baner img */}
+          <div className="w-full lg:h-[80vh]  relative  lg:mt-15 ">
+            
 
             <div className="w-full  grid grid-cols-3 gap-1 my-10">
               {skills.map((s, idx) => (
@@ -152,8 +165,8 @@ const Header = () => {
                   >
                     <div
                       className={`
-            ${s.position} 
-            lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
+                    ${s.position} 
+                    lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
                     >
                       <h2 className="text-sm md:text-lg lg:text-2xl font-bold italic ">
                         {s.text}{" "}
@@ -169,13 +182,21 @@ const Header = () => {
                 </div>
               ))}
             </div>
-             <div className="w-full max-w-[500px] mx-auto relative z-10">
+
+            <div className="w-full max-w-[500px] mx-auto relative z-10">
               <img
                 src="./Banner.png"
                 className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
               />
             </div>
           </div>
+      </div>
+
+
+
+     
+         
+
 
           {/* Optional: Scroll down arrow */}
           <div className="md:mt-10 lg:mt-10 animate-bounce">
@@ -183,7 +204,56 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+        <ShootingStars
+        starColor="#9E00FF"
+        trailColor="#2EB9DF"
+        minSpeed={15}
+        maxSpeed={35}
+        minDelay={1000}
+        maxDelay={3000}
+      />
+      <ShootingStars
+        starColor="#FF0099"
+        trailColor="#FFB800"
+        minSpeed={10}
+        maxSpeed={25}
+        minDelay={2000}
+        maxDelay={4000}
+      />
+      <ShootingStars
+        starColor="#00FF9E"
+        trailColor="#00B8FF"
+        minSpeed={20}
+        maxSpeed={40}
+        minDelay={1500}
+        maxDelay={3500}
+      />
+
+      <style jsx>{`
+        .stars {
+          background-image: 
+            radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+            radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+            radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+            radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+            radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+            radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+          background-repeat: repeat;
+          background-size: 200px 200px;
+          animation: twinkle 5s ease-in-out infinite;
+          opacity: 0.5;
+        }
+
+        @keyframes twinkle {
+          0% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+          100% { opacity: 0.5; }
+        }
+      `}</style>
     </header>
+
+    
   );
 };
 

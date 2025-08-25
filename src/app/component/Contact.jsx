@@ -43,7 +43,7 @@ const Contact = () => {
 
         <div className="mt-10 grid grid-cols-3 md:grid-cols-5 gap-10 py-5">
           {contacts?.map((c, index) => (
-            <div className="relative group  h-[10vh] cursor-pointer">
+            <div key={index} className="relative group  h-[10vh] cursor-pointer">
               {/* Slide 1 (Icon) */}
               <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700  rounded-4xl group-hover:bg-transparent translate-y-0 group-hover:-translate-y-10 z-10">
                 <img

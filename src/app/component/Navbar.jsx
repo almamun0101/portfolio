@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { RiHome2Line } from "react-icons/ri";
-import { FcAbout } from "react-icons/fc";
+import { TiInfoLarge } from "react-icons/ti";
+
 import { MdWeb } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineContactSupport } from "react-icons/md";
@@ -15,7 +16,7 @@ const menuItems = [
   },
   {
     title: "About",
-    icon: <FcAbout size={25} />,
+    icon: <TiInfoLarge size={25} />,
     gradient: ["from-[#56CCF2]", "to-[#2F80ED]"],
   },
   {
@@ -56,12 +57,12 @@ const Navbar = () => {
   return (
     <header className="py-2">
       <div className="container">
-        <nav className=" px-5 py-3 rounded-full flex md:flex-row flex-col gap-5  justify-between items-center shadow-md relative">
-          <a href="/" className="px-10 h-[50px] rounded-full 
+        <nav className="z-10 px-5 py-5 rounded-full flex md:flex-row flex-col gap-5  justify-center items-center shadow-md relative">
+          {/* <a href="/" className="px-10 h-[50px] rounded-full 
               bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
               flex items-center justify-center font-bold text-xl text-black">
             Al Mamun Khan
-          </a>
+          </a> */}
 
           {/* Desktop Menu */}
           <div className="flex items-center justify-center font-[Poppins]">
@@ -76,7 +77,7 @@ const Navbar = () => {
               bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
               flex items-center justify-center cursor-pointer
               transition-all duration-500 overflow-hidden
-              ${hovered === i ? "w-[150px]" : ""}
+              ${hovered === i ? "w-[120px]" : ""}
             `}
                 >
                   {/* gradient bg overlay */}
