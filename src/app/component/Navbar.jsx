@@ -1,15 +1,48 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { RiHome2Line } from "react-icons/ri";
+import { FcAbout } from "react-icons/fc";
+import { MdWeb } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import { MdOutlineContactSupport } from "react-icons/md";
+
+const menuItems = [
+  {
+    title: "Home",
+    icon: <RiHome2Line size={25} />,
+    gradient: ["from-[#a955ff]", "to-[#ea51ff]"],
+  },
+  {
+    title: "About",
+    icon: <FcAbout size={25} />,
+    gradient: ["from-[#56CCF2]", "to-[#2F80ED]"],
+  },
+  {
+    title: "Projects",
+    icon: <MdWeb size={25} />,
+    gradient: ["from-[#FF9966]", "to-[#FF5E62]"],
+  },
+  {
+    title: "Git",
+    icon: <FaGithub size={25} />,
+    gradient: ["from-[#80FF72]", "to-[#7EE8FA]"],
+  },
+  {
+    title: "Contact",
+    icon: <MdOutlineContactSupport size={25} />,
+    gradient: ["from-[#ffa9c6]", "to-[#f434e2]"],
+  },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [hovered, setHovered] = useState(null);
 
   const menuRef = useRef(null);
   const navItems = ["Home", "About", "Services", "Contact"];
 
- useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -23,37 +56,73 @@ const Navbar = () => {
   return (
     <header className="p-5">
       <div className="container">
+        <nav className=" px-5 py-3 rounded-full flex md:flex-row flex-col gap-5  justify-between items-center shadow-md relative">
+          <a href="/" className="px-10 h-[50px] rounded-full 
+              bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
+              flex items-center justify-center font-bold text-xl text-black">
+            Al Mamun Khan
+          </a>
 
-      <nav className="bg-white px-5 py-3 rounded-full flex justify-between items-center shadow-md relative">
-        <a href="/" className="font-bold text-xl text-black">Al Mamun Khan</a>
+          {/* Desktop Menu */}
+          <div className="flex items-center justify-center font-[Poppins]">
+            <ul className="flex gap-6 relative">
+              {menuItems.map((item, i) => (
+                <li
+                  key={i}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  className={`
+              relative list-none w-[50px] h-[50px] rounded-full 
+              bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
+              flex items-center justify-center cursor-pointer
+              transition-all duration-500 overflow-hidden
+              ${hovered === i ? "w-[150px]" : ""}
+            `}
+                >
+                  {/* gradient bg overlay */}
+                  <div
+                    className={`
+                absolute inset-0 rounded-full bg-gradient-to-tr 
+                ${item.gradient.join(" ")}
+                transition-opacity duration-500
+                ${hovered === i ? "opacity-100" : "opacity-0"}
+              `}
+                  ></div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex gap-6 text-black font-medium">
-          {navItems.map(item => (
-            <li key={item} className="hover:text-gold cursor-pointer">{item}</li>
-          ))}
-        </ul>
+                  {/* glow effect */}
+                  <div
+                    className={`
+                absolute top-2 w-full h-full rounded-full bg-gradient-to-tr 
+                ${item.gradient.join(" ")}
+                blur-xl transition-opacity duration-500 -z-10
+                ${hovered === i ? "opacity-50" : "opacity-0"}
+              `}
+                  ></div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          className="lg:hidden p-2 bg-black text-white rounded-full"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+                  {/* icon */}
+                  {item.icon}
 
-        {/* Mobile Dropdown */}
-        {isOpen && (
-          <div  ref={menuRef} className="absolute top-20 right-5 w-3/4 sm:w-1/2 bg-white p-5 rounded-xl shadow-lg z-50">
-            <ul className="flex flex-col gap-4 text-black font-medium">
-              {navItems.map(item => (
-                <li key={item} className="hover:text-gold cursor-pointer">{item}</li>
+                  {/* class={`text-gray-500 text-[1.75em] transition-all duration-500 
+                ${hovered === i ? "scale-0 text-white delay-0" : "delay-200"}`}
+            ></> */}
+
+                  {/* title */}
+                  <span
+                    className={`
+                absolute uppercase text-white tracking-wide text-[1.1em]
+                transition-all duration-500
+                ${hovered === i ? "scale-100 delay-200" : "scale-0"}
+              `}
+                  >
+                    {item.title}
+                  </span>
+                </li>
               ))}
             </ul>
           </div>
-        )}
-      </nav>
+
+         
+        </nav>
       </div>
     </header>
   );
