@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { SiTailwindcss, SiNextdotjs, SiMongodb } from "react-icons/si";
 import {
@@ -13,6 +13,7 @@ import {
 import { IoLogoFirebase } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { Dock, DockIcon } from "@/components/magicui/dock";
+import { DotScreenShader } from "@/components/dot-shader-background";
 
 const techIcons = {
   React: <FaReact className="text-blue-400 text-2xl" />,
@@ -44,8 +45,12 @@ const About = () => {
   const secRow = techIconsArray.slice(6);
 
   return (
-    <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4 py-5">
-      <div className="container py-20">
+    <div className="w-full h-300 flex flex-col  items-center justify-center relative bg-black">
+      <div className="hidden md:block absolute inset-0">
+        <DotScreenShader />
+      </div>
+
+      <div className="container py-10 z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +63,7 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8  mx-auto py-5">
           {/* Who I Am Card */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
@@ -66,7 +71,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: false }}
           >
-            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6  hover:-translate-y-2 hover:shadow-yellow-400/30 transition duration-300">
               <h3 className="text-xl font-semibold text-yellow-400 mb-4">
                 Who I Am
               </h3>
@@ -93,7 +98,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: false }}
           >
-            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
+            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 hover:-translate-y-2 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
               <h3 className="text-xl font-semibold text-yellow-400 mb-4">
                 My Skills
               </h3>
@@ -108,8 +113,7 @@ const About = () => {
           </motion.div>
         </div>
       </div>
-
-      <div className="py-10">
+      <div className="py-5 z-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
           Design I Used
         </h2>
@@ -130,7 +134,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="py-10">
+      <div className="py-5 z-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
           Skill's
         </h2>
@@ -156,7 +160,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="py-10">
+      <div className="py-5 z-10">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
           Tools I Used
         </h2>
