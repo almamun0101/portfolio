@@ -57,7 +57,7 @@ const Navbar = () => {
   return (
     <header className="py-2">
       <div className="container">
-        <nav className="z-10 px-5 py-5 rounded-full flex md:flex-row flex-col gap-5  justify-center items-center shadow-md relative">
+        <nav className=" z-10 px-5 py-5 rounded-full flex md:flex-row flex-col gap-5  justify-center items-center shadow-md relative">
           {/* <a href="/" className="px-10 h-[50px] rounded-full 
               bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
               flex items-center justify-center font-bold text-xl text-black">
