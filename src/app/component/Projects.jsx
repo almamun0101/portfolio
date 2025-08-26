@@ -12,7 +12,8 @@ import {
 } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
 import { animate, motion } from "framer-motion";
-import { WordPullUp } from "@/components/ui/word-pull-up";
+
+
 
 
 const techIcons = {
@@ -161,12 +162,9 @@ const Projects = () => {
     ));
   };
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-16 px-4 sm:px-6 lg:px-20 text-white">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-20 px-4 sm:px-6 lg:px-20 text-white">
       <div className="container">
-         <WordPullUp
-      className="text-4xl font-bold tracking-[-0.02em] text-white dark:text-white md:text-7xl md:leading-[5rem]"
-      words="Word Pull Up"
-    />
+       
         <h2 className="text-3xl  items-center mx-auto font-extrabold text-center mb-16">
           <span className="italic p-5 text-6xl text-gold font-extrabold">
             {projects.length}

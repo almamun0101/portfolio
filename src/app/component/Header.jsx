@@ -62,7 +62,7 @@ const Header = () => {
     <header className="bg-black text-white">
  
         <div className="mx-auto flex flex-col items-center text-center gap-6">
-          <div className="py-10 w-full bg-black relative overflow-hidden">
+          <div className="py-5 w-full bg-black relative overflow-hidden">
             {/* Background with stars */}
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(0,0,0,0)_80%)]" />
@@ -97,7 +97,7 @@ const Header = () => {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-lg md:text-2xl font-semibold text-white">
+                <h2 className="py-2 text-lg md:text-2xl font-semibold text-white">
                   <Typewriter
                     text={[
                       "Web Designer...",
@@ -114,7 +114,7 @@ const Header = () => {
                   />
                 </h2>
 
-                <p className="text-gray-400 text-sm md:text-base">
+                <p className="text-gray-400 py-2 text-sm md:text-base">
                   1 Year of Experience
                 </p>
               </motion.div>
@@ -149,7 +149,13 @@ const Header = () => {
             </div>
 
             {/* baner img */}
-            <div className="container lg:h-[80vh]  relative  lg:mt-15 ">
+            <div className="container py-10 lg:h-[80vh]  relative  lg:mt-15 ">
+                <div className="w-full max-w-[500px] mx-auto relative z-10">
+                <img
+                  src="./Banner.png"
+                  className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
+                />
+              </div>
               <div className="w-full  grid grid-cols-3 gap-1 my-10">
                 {skills.map((s, idx) => (
                   <div key={idx} className="">
@@ -180,12 +186,7 @@ const Header = () => {
                 ))}
               </div>
 
-              <div className="w-full max-w-[500px] mx-auto relative z-10">
-                <img
-                  src="./Banner.png"
-                  className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
-                />
-              </div>
+            
             </div>
           </div>
 

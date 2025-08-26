@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { CiLink } from "react-icons/ci";
+import WordPullUp from "@/components/ui/WordPullUp";
 
 const contacts = [
   {
@@ -38,7 +39,7 @@ const Contact = () => {
     <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-20">
       <div className="container my-20">
         <h2 className="text-gold text-4xl font-bold text-center">
-          Conect With Me
+          <WordPullUp text="Connect With Me" />
         </h2>
 
         <div className="mt-10 grid grid-cols-3 md:grid-cols-5 gap-10 py-5">

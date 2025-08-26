@@ -45,12 +45,12 @@ const About = () => {
   const secRow = techIconsArray.slice(6);
 
   return (
-    <div className="w-full h-300 flex flex-col  items-center justify-center relative bg-black">
+    <div className=" w-full h-300 flex flex-col  items-center justify-center relative bg-black">
       <div className="hidden md:block absolute inset-0">
         <DotScreenShader />
       </div>
 
-      <div className="container py-10 z-10">
+      <div className="container py-0 z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
