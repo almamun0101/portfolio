@@ -45,7 +45,7 @@ const About = () => {
   const secRow = techIconsArray.slice(6);
 
   return (
-    <div className=" w-full h-300 flex flex-col  items-center justify-center relative bg-black">
+    <div className=" w-full h-300 flex flex-col  items-center justify-center relative bg-black px-5">
       <div className="hidden md:block absolute inset-0">
         <DotScreenShader />
       </div>

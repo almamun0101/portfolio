@@ -59,7 +59,7 @@ const skills = [
 
 const Header = () => {
   return (
-    <header className="bg-black text-white">
+    <header className="bg-black text-white px-5">
  
         <div className="mx-auto flex flex-col items-center text-center gap-6">
           <div className="py-5 w-full bg-black relative overflow-hidden">
