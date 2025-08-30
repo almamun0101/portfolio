@@ -44,7 +44,7 @@ const projects = [
     name: "Postivus",
     cat: "Content",
     based: "Nextjs",
-    img: "/planto.png",
+    img: "/Positivus.png",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/Devsaround-Positivus",
     live: "https://positivus-almamun0101.netlify.app/",
