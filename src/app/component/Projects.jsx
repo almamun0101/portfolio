@@ -41,12 +41,21 @@ const projects = [
     live: "https://chattingappalmamun0101.netlify.app",
   },
   {
+    name: "Postivus",
+    cat: "Content",
+    based: "Nextjs",
+    img: "/planto.png",
+    tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
+    github: "https://github.com/almamun0101/Devsaround-Positivus",
+    live: "https://positivus-almamun0101.netlify.app/",
+  },
+  {
     name: "Planto",
     cat: "Content",
     based: "Nextjs",
     img: "/planto.png",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
-    github: "https://github.com/almamun0101/to-do-list",
+    github: "https://github.com/almamun0101/Planto",
     live: "https://plantoalmamun0101.netlify.app/",
   },
   {
