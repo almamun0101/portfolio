@@ -42,8 +42,8 @@ const projects = [
   },
   {
     name: "Postivus",
-    cat: "Content",
-    based: "Nextjs",
+    cat: "Digital Marketing",
+    based: "React",
     img: "/Positivus.png",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/Devsaround-Positivus",
@@ -51,8 +51,8 @@ const projects = [
   },
   {
     name: "Planto",
-    cat: "Content",
-    based: "Nextjs",
+    cat: "Tree planto commerce",
+   based: "React",
     img: "/planto.png",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/Planto",
@@ -60,8 +60,8 @@ const projects = [
   },
   {
     name: "Exclusive",
-    cat: "E-shop",
-    based: "Nextjs",
+    cat: "E-commerce",
+    based: "React",
     img: "/Exclusive.png",
     tech: ["Nextjs","React", "Tailwind", "Html",  "Js", "Git"],
     github: "https://github.com/almamun0101/exclusive",
@@ -70,7 +70,7 @@ const projects = [
   {
     name: "Protfolio",
     cat: "Content",
-    based: "Nextjs",
+    based: "React",
     img: "/protfolio.png",
     tech: ["Nextjs", "React", "Tailwind", "Git", "Html", "Js"],
     github: "https://github.com/almamun0101/portfolio",
