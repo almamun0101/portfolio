@@ -44,7 +44,7 @@ const projects = [
     name: "HealthCare",
     cat: "Apointment System",
     based: "React",
-    img: "/Positivus.png",
+    img: "/Healthcare.png",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/doctor-apointment-system",
     live: "https://doctor-apontment-system-almamun0101.netlify.app/",
