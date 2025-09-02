@@ -41,6 +41,15 @@ const projects = [
     live: "https://chattingappalmamun0101.netlify.app",
   },
   {
+    name: "HealthCare",
+    cat: "Apointment System",
+    based: "React",
+    img: "/Positivus.png",
+    tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
+    github: "https://github.com/almamun0101/doctor-apointment-system",
+    live: "https://doctor-apontment-system-almamun0101.netlify.app/",
+  },
+  {
     name: "Postivus",
     cat: "Digital Marketing",
     based: "React",
