@@ -1,202 +1,297 @@
 "use client";
-import React from "react";
-import { animate, motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { Typewriter } from "@/components/magicui/typewriter";
-import { ShootingStarsDemo } from "@/components/magicui/ShootingStarsDemo ";
-import { ShootingStars } from "@/components/magicui/shootingStar";
+// Typewriter component (simplified version)
+const Typewriter = ({
+  text,
+  speed = 70,
+  className,
+  waitTime = 1500,
+  deleteSpeed = 40,
+  cursorChar = "_",
+}) => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
 
+  useEffect(() => {
+    const textArray = Array.isArray(text) ? text : [text];
+    const fullText = textArray[currentTextIndex];
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (currentText.length < fullText.length) {
+            setCurrentText(fullText.slice(0, currentText.length + 1));
+          } else {
+            setTimeout(() => setIsDeleting(true), waitTime);
+          }
+        } else {
+          if (currentText.length > 0) {
+            setCurrentText(currentText.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
+          }
+        }
+      },
+      isDeleting ? deleteSpeed : speed
+    );
+
+    return () => clearTimeout(timeout);
+  }, [
+    currentText,
+    isDeleting,
+    currentTextIndex,
+    text,
+    speed,
+    waitTime,
+    deleteSpeed,
+  ]);
+
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  return (
+    <span className={className}>
+      {currentText}
+      <span className={showCursor ? "opacity-100" : "opacity-0"}>
+        {cursorChar}
+      </span>
+    </span>
+  );
+};
+
+// Shooting Stars component (simplified)
+const ShootingStars = ({
+  starColor,
+  trailColor,
+  minSpeed,
+  maxSpeed,
+  minDelay,
+  maxDelay,
+}) => {
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    const createStar = () => {
+      const star = {
+        id: Math.random(),
+        x: Math.random() * window.innerWidth,
+        y: -10,
+        speed: Math.random() * (maxSpeed - minSpeed) + minSpeed,
+        delay: Math.random() * (maxDelay - minDelay) + minDelay,
+      };
+      return star;
+    };
+
+    const interval = setInterval(() => {
+      setStars((prev) => [...prev.slice(-5), createStar()]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [minSpeed, maxSpeed, minDelay, maxDelay]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {stars.map((star) => (
+        <motion.div
+          key={star.id}
+          initial={{ x: star.x, y: -10, opacity: 0 }}
+          animate={{
+            x: star.x + 200,
+            y: window.innerHeight + 10,
+            opacity: [0, 1, 1, 0],
+          }}
+          transition={{
+            duration: star.speed / 10,
+            delay: star.delay / 1000,
+            ease: "linear",
+          }}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            backgroundColor: starColor,
+            boxShadow: `0 0 6px ${trailColor}`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// const skills = [
+//   {
+//     text: "Html",
+//     icon: "./html.svg",
+//     position: { desktop: "top-[5%] left-[8%]", mobile: "order-1" },
+//     direction: { x: -100, y: -50 },
+//   },
+//   {
+//     text: "Bootstrap",
+//     icon: "./bootstrap.svg",
+//     position: { desktop: "top-[5%] right-[8%]", mobile: "order-2" },
+//     direction: { x: 100, y: -50 },
+//   },
+//   {
+//     text: "CSS",
+//     icon: "./css.svg",
+//     position: { desktop: "top-[25%] left-[2%]", mobile: "order-3" },
+//     direction: { x: -100, y: 0 },
+//   },
+//   {
+//     text: "Sass",
+//     icon: "./sass.svg",
+//     position: { desktop: "top-[25%] right-[2%]", mobile: "order-4" },
+//     direction: { x: 100, y: 0 },
+//   },
+//   {
+//     text: "JS",
+//     icon: "./js.svg",
+//     position: { desktop: "top-[45%] left-[5%]", mobile: "order-5" },
+//     direction: { x: -100, y: 50 },
+//   },
+//   {
+//     text: "Next",
+//     icon: "./next.svg",
+//     position: { desktop: "top-[45%] right-[5%]", mobile: "order-6" },
+//     direction: { x: 100, y: 50 },
+//   },
+//   {
+//     text: "React",
+//     icon: "./react.svg",
+//     position: { desktop: "top-[65%] left-[8%]", mobile: "order-7" },
+//     direction: { x: -100, y: 100 },
+//   },
+//   {
+//     text: "Tailwind",
+//     icon: "./tailwind.svg",
+//     position: { desktop: "top-[65%] right-[8%]", mobile: "order-8" },
+//     direction: { x: 100, y: 100 },
+//   },
+// ];
 const skills = [
   {
-    text: "Html",
-    icon: "./html.svg",
-    position: "top-[0%] left-[0%] sm:left-[10%]",
-    direction: { x: -100 },
+    text: "HTML",
+     icon: "./html.svg",
+    color: "from-orange-400 to-red-500",
+    position: { desktop: "top-[5%] left-[8%]", mobile: "order-1" },
+    direction: { x: -100, y: -50 },
   },
   {
     text: "Bootstrap",
-    icon: "./bootstrap.svg",
-    position: "top-[0%] right-[0%] sm:right-[10%]",
-    direction: { x: 100 },
+   icon: "./bootstrap.svg",
+    color: "from-purple-400 to-pink-500",
+    position: { desktop: "top-[5%] right-[8%]", mobile: "order-2" },
+    direction: { x: 100, y: -50 },
   },
   {
     text: "CSS",
-    icon: "./css.svg",
-    position: "top-[30%] left-0 sm:left-[0%]",
-    direction: { x: -100 },
+      icon: "./css.svg",
+    color: "from-blue-400 to-cyan-500",
+    position: { desktop: "top-[25%] left-[2%]", mobile: "order-3" },
+    direction: { x: -100, y: 0 },
   },
   {
     text: "Sass",
     icon: "./sass.svg",
-    position: "top-[30%] right-0 sm:right-[0%] ",
-    direction: { x: 100 },
+    color: "from-pink-400 to-rose-500",
+    position: { desktop: "top-[25%] right-[2%]", mobile: "order-4" },
+    direction: { x: 100, y: 0 },
   },
   {
-    text: "JS",
+    text: "JavaScript",
     icon: "./js.svg",
-    position: "top-[60%] left-0  sm:left-[0%]",
-    direction: { x: -100 },
+    color: "from-yellow-400 to-orange-500",
+    position: { desktop: "top-[45%] left-[5%]", mobile: "order-5" },
+    direction: { x: -100, y: 50 },
   },
   {
-    text: "Next",
+    text: "Next.js",
     icon: "./next.svg",
-    position: "top-[60%] right-0 sm:right-[0%]",
-    direction: { x: 100 },
+    color: "from-gray-400 to-gray-600",
+    position: { desktop: "top-[45%] right-[5%]", mobile: "order-6" },
+    direction: { x: 100, y: 50 },
   },
   {
     text: "React",
     icon: "./react.svg",
-    position: "top-[90%] left-0 sm:left-[5%] ",
-    direction: { x: -100 },
+    color: "from-cyan-400 to-blue-500",
+    position: { desktop: "top-[65%] left-[8%]", mobile: "order-7" },
+    direction: { x: -100, y: 100 },
   },
   {
     text: "Tailwind",
     icon: "./tailwind.svg",
-    position: "top-[90%] right-0 sm:right-[5%]",
-    direction: { x: 100 },
+    color: "from-teal-400 to-cyan-500",
+    position: { desktop: "top-[65%] right-[8%]", mobile: "order-8" },
+    direction: { x: 100, y: 100 },
   },
 ];
 
 const Header = () => {
+  const [isHovered, setIsHovered] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  };
+
   return (
-    <header className="bg-black text-white px-5">
- 
-        <div className="mx-auto flex flex-col items-center text-center gap-6">
-          <div className="py-5 w-full bg-black relative overflow-hidden">
-            {/* Background with stars */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,rgba(0,0,0,0)_80%)]" />
-              <div className="stars absolute inset-0" />
-            </div>
-            <div className="container relative z-10 flex flex-col  justify-center  text-center">
-              <div className="flex flex-wrap justify-center gap-2 items-center ">
-                <motion.div
-                  initial={{ opacity: 0, x: -100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-                    Hello! I'm
-                  </h1>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <h1 className=" text-5xl md:text-6xl text-gold ml-3 font-extrabold leading-tight animate-pulse">
-                    Al Mamun Khan
-                  </h1>
-                </motion.div>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="py-2 text-lg md:text-2xl font-semibold text-white">
-                  <Typewriter
-                    text={[
-                      "Web Designer...",
-                      "Frontend Developer...",
-                      "Backend Develpoer (Onrolling)...",
-                      "MERN Stack Developer...",
-                      "Make your ideas to visable in Cloud",
-                    ]}
-                    speed={70}
-                    className="text-yellow-500"
-                    waitTime={1500}
-                    deleteSpeed={40}
-                    cursorChar={"_"}
-                  />
-                </h2>
+    <header className="bg-gradient-to-br from-black via-gray-900 to-black text-white px-5 min-h-screen relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0)_70%)]" />
 
-                <p className="text-gray-400 py-2 text-sm md:text-base">
-                  1 Year of Experience
-                </p>
-              </motion.div>
+        {/* Interactive cursor effect */}
+        <motion.div
+          className="absolute w-96 h-96 rounded-full opacity-10 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle, rgba(250, 204, 21, 0.3) 0%, rgba(250, 204, 21, 0) 70%)`,
+            x: mousePosition.x - 192,
+            y: mousePosition.y - 192,
+          }}
+          transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        />
 
-              <div className="flex gap-4 mt-4 flex-wrap justify-center">
-                <motion.div
-                  initial={{ opacity: 0, x: -100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
-                    Resume
-                  </button>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <button className="bg-gold text-black px-6 py-2 rounded-full font-medium transition-all hover:bg-transparent hover:text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
-                    <a
-                      href="/Al Mamun khan CV For Frontend Dev.pdf" // Place cv.pdf inside your public folder
-                      download="Al Mamun khan CV For Frontend Dev.pdf" // Name for downloaded file
-                    >
-                      Download CV
-                    </a>
-                  </button>
-                </motion.div>
-              </div>
-            </div>
+        {/* Animated stars background */}
+        <div className="stars absolute inset-0" />
+      </div>
 
-            {/* baner img */}
-            <div className="container py-10 lg:h-[80vh]  relative  lg:mt-15 ">
-                <div className="w-full max-w-[500px] mx-auto relative z-10">
-                <img
-                  src="./Banner.png"
-                  className="w-full object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
-                />
-              </div>
-              <div className="w-full  grid grid-cols-3 gap-1 my-10">
-                {skills.map((s, idx) => (
-                  <div key={idx} className="">
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, ...s.direction }}
-                      whileInView={{ opacity: 1, x: 0, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      viewport={{ once: true }}
-                    >
-                      <div
-                        className={`z-10
-                    ${s.position} 
-                    lg:absolute lg:px-10 md:absolute  sm:absolute mt-2 hover:scale-110 transition duration-300 hover:shadow-[0_0_20px_#facc15] flex justify-between w-auto sm:w-30 md:w-35 lg:w-auto  md:py-2 rounded-2xl items-center gap-1 border-3 border-gold px-2 py-1 hover:bg-white/20 hover:text-gold bg-gray-400/40`}
-                      >
-                        <h2 className="text-sm md:text-lg lg:text-2xl font-bold italic ">
-                          {s.text}{" "}
-                        </h2>
-                        <img
-                          src={s.icon}
-                          alt={s.text}
-                          className="w-5 sm:w-8 md:w-10 lg:w-10"
-                        />
-                        {console.log(s.position)}
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
-              </div>
-
-            
-            </div>
-          </div>
-
-          {/* Optional: Scroll down arrow */}
-          <div className="py-5 animate-bounce">
-            <span className="text-gold text-xl">↓</span>
-          </div>
-        </div>
-      
-
+      {/* Shooting Stars */}
       <ShootingStars
         starColor="#9E00FF"
         trailColor="#2EB9DF"
@@ -213,43 +308,317 @@ const Header = () => {
         minDelay={2000}
         maxDelay={4000}
       />
-      <ShootingStars
-        starColor="#00FF9E"
-        trailColor="#00B8FF"
-        minSpeed={20}
-        maxSpeed={40}
-        minDelay={1500}
-        maxDelay={3500}
-      />
 
+      <div className="relative z-10 container mx-auto">
+        <motion.div
+          className="flex flex-col items-center text-center gap-8 pt-20"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Main Title Section */}
+          <motion.div className="space-y-6" variants={itemVariants}>
+            <div className="flex flex-wrap justify-center gap-4 items-center">
+              <motion.h1
+                className="text-5xl md:text-7xl font-extrabold leading-tight"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+              >
+                Hello! I'm
+              </motion.h1>
+              <motion.h1
+                className="text-5xl md:text-7xl font-extrabold leading-tight bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 100,
+                  delay: 0.2,
+                }}
+                whileHover={{ scale: 1.05 }}
+              >
+                Al Mamun Khan
+              </motion.h1>
+            </div>
+
+            <motion.div className="space-y-4" variants={itemVariants}>
+              <h2 className="text-xl md:text-3xl font-semibold">
+                <Typewriter
+                  text={[
+                    "Web Designer...",
+                    "Frontend Developer...",
+                    "Backend Developer (Enrolling)...",
+                    "MERN Stack Developer...",
+                    "Making ideas visible in the Cloud",
+                  ]}
+                  speed={70}
+                  className="text-yellow-400"
+                  waitTime={1500}
+                  deleteSpeed={40}
+                  cursorChar={"_"}
+                />
+              </h2>
+
+              <motion.p
+                className="text-gray-300 text-lg md:text-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
+              >
+                1 Year of Experience • Passionate Developer
+              </motion.p>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex gap-6 mt-8 flex-wrap justify-center"
+              variants={itemVariants}
+            >
+              <motion.button
+                className="group relative bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg shadow-lg overflow-hidden"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <span className="relative z-10">View Resume</span>
+                <motion.div
+                  className="absolute inset-0 bg-white"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{
+                    type: "tween",
+                    ease: "easeInOut",
+                    duration: 0.3,
+                  }}
+                />
+              </motion.button>
+
+              <motion.button
+                className="group relative border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full font-bold text-lg hover:text-black transition-colors duration-300 overflow-hidden"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-yellow-400"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{
+                    type: "tween",
+                    ease: "easeInOut",
+                    duration: 0.3,
+                  }}
+                />
+                <span className="relative z-10">Download CV</span>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+
+          {/* Profile Image and Skills Section */}
+          <motion.div
+            className="relative w-full max-w-6xl mx-auto py-16"
+            variants={itemVariants}
+          >
+            {/* Profile Image */}
+            <motion.div
+              className="relative z-20 w-full max-w-md mx-auto"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="relative">
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-400 to-yellow-600 blur-xl opacity-30"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                <div className="relative  p-2 rounded-2xl">
+                  <img
+                    src="./Banner.png"
+                    alt="Al Mamun Khan"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Skills Grid - Mobile */}
+            <div className="lg:hidden grid grid-cols-2 gap-4 mt-12">
+              {skills.map((skill, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 + idx * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  onHoverStart={() => setIsHovered(idx)}
+                  onHoverEnd={() => setIsHovered(null)}
+                  className={`relative p-4 rounded-xl bg-gradient-to-r ${skill.color} backdrop-blur-sm border border-white/20 shadow-lg cursor-pointer transition-all duration-300`}
+                >
+                  <div className="flex items-center gap-3">
+                   <img src="/public/html.svg" alt="" />
+                    <span className="font-bold text-white text-lg">
+                      {skill.text}
+                    </span>
+                  </div>
+                  <AnimatePresence>
+                    {isHovered === idx && (
+                      <motion.div
+                        className="absolute inset-0 rounded-xl bg-white/10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Skills Positioned - Desktop */}
+            <div className="hidden lg:block">
+              {skills.map((skill, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, ...skill.direction }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.8 + idx * 0.1,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 12,
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    rotate: [0, -5, 5, 0],
+                    transition: { duration: 0.3 },
+                  }}
+                  onHoverStart={() => setIsHovered(idx)}
+                  onHoverEnd={() => setIsHovered(null)}
+                  className={`absolute ${skill.position.desktop} cursor-pointer`}
+                >
+                  <div
+                    className={`relative p-4 rounded-2xl bg-gradient-to-r ${skill.color} backdrop-blur-sm border-2 border-white/30 shadow-xl transition-all duration-300`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <img src={skill.icon} alt="" className="w-8" />
+                      <span className="font-bold text-white text-lg xl:text-xl">
+                        {skill.text}
+                      </span>
+                    </div>
+
+                    {/* Glow effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl opacity-0"
+                      style={{
+                        background: `linear-gradient(45deg, ${
+                          skill.color.split(" ")[1]
+                        }, ${skill.color.split(" ")[3]})`,
+                        filter: "blur(20px)",
+                      }}
+                      animate={{
+                        opacity: isHovered === idx ? 0.6 : 0,
+                        scale: isHovered === idx ? 1.2 : 1,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            className="py-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-yellow-400 text-3xl cursor-pointer"
+            >
+              ↓
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Enhanced CSS Styles */}
       <style jsx>{`
         .stars {
           background-image: radial-gradient(
               2px 2px at 20px 30px,
-              #eee,
+              rgba(255, 255, 255, 0.8),
               rgba(0, 0, 0, 0)
             ),
-            radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
-            radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
-            radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
-            radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
-            radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+            radial-gradient(
+              2px 2px at 40px 70px,
+              rgba(255, 255, 255, 0.6),
+              rgba(0, 0, 0, 0)
+            ),
+            radial-gradient(
+              2px 2px at 50px 160px,
+              rgba(255, 255, 255, 0.4),
+              rgba(0, 0, 0, 0)
+            ),
+            radial-gradient(
+              2px 2px at 90px 40px,
+              rgba(255, 255, 255, 0.7),
+              rgba(0, 0, 0, 0)
+            ),
+            radial-gradient(
+              2px 2px at 130px 80px,
+              rgba(255, 255, 255, 0.5),
+              rgba(0, 0, 0, 0)
+            ),
+            radial-gradient(
+              2px 2px at 160px 120px,
+              rgba(255, 255, 255, 0.3),
+              rgba(0, 0, 0, 0)
+            );
           background-repeat: repeat;
           background-size: 200px 200px;
-          animation: twinkle 5s ease-in-out infinite;
-          opacity: 0.5;
+          animation: twinkle 8s ease-in-out infinite;
+          opacity: 0.8;
         }
 
         @keyframes twinkle {
           0% {
-            opacity: 0.5;
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          25% {
+            opacity: 0.8;
+            transform: scale(1.1);
           }
           50% {
-            opacity: 0.8;
+            opacity: 0.5;
+            transform: scale(1);
+          }
+          75% {
+            opacity: 0.9;
+            transform: scale(1.05);
           }
           100% {
-            opacity: 0.5;
+            opacity: 0.3;
+            transform: scale(1);
           }
+        }
+
+        .container {
+          max-width: 1200px;
         }
       `}</style>
     </header>

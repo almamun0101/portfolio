@@ -1,16 +1,17 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { FaUser, FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
-import { FaUserCircle } from "react-icons/fa";
 import { CiLink } from "react-icons/ci";
 import WordPullUp from "@/components/ui/WordPullUp";
 
 const contacts = [
   {
-    name: "LinkDin",
+    name: "LinkedIn",
     logo: "/linkdin.png",
-    link: "",
+    link: "https://linkedin.com/",
   },
   {
     name: "Facebook",
@@ -18,17 +19,17 @@ const contacts = [
     link: "https://www.facebook.com/mahan.khan.shahir/",
   },
   {
-    name: "Whatsapp",
+    name: "WhatsApp",
     logo: "/whatsapp.png",
     link: "https://wa.me/8801327119888",
   },
   {
-    name: "Gamil",
+    name: "Gmail",
     logo: "/gmail.png",
-    link: "https://mail.google.com/mail/?view=cm&fs=1&to=almamunkhan0101@gmail.com",
+    link: "mailto:almamunkhan0101@gmail.com",
   },
   {
-    name: "Git",
+    name: "GitHub",
     logo: "/gitlogo.png",
     link: "https://github.com/almamun0101",
   },
@@ -36,98 +37,127 @@ const contacts = [
 
 const Contact = () => {
   return (
-    <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4 py-20">
-      <div className="container my-20">
-        <h2 className="text-gold text-4xl font-bold text-center">
+    <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black px-6 py-20">
+      <div className="container mx-auto">
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-gold text-4xl md:text-5xl font-extrabold text-center"
+        >
           <WordPullUp text="Connect With Me" />
-        </h2>
+        </motion.h2>
 
-        <div className="mt-10 grid grid-cols-3 md:grid-cols-5 gap-10 py-5">
-          {contacts?.map((c, index) => (
-            <div key={index} className="relative group  h-[10vh] cursor-pointer">
-              {/* Slide 1 (Icon) */}
-              <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700  rounded-4xl group-hover:bg-transparent translate-y-0 group-hover:-translate-y-10 z-10">
-                <img
-                  src={c.logo}
-                  alt=""
-                  className="w-25 group-hover:scale-110 duration-600"
-                />
-              </div>
-
-              {/* Slide 2 (Text) */}
-              <div className="absolute w-full md:w-3/4 mx-auto h-1/2 inset-0 flex flex-col items-center justify-center bg-white opacity-0 group-hover:opacity-100 shadow-xl rounded-4xl transition-transform duration-700 -translate-y-0 group-hover:translate-y-15">
+        {/* Social Links */}
+        <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 place-items-center">
+          {contacts.map((c, index) => (
+            <motion.div
+              key={index}
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10, rotate: 2 }}
+              className="relative group w-24 h-24 cursor-pointer"
+            >
+              <img
+                src={c.logo}
+                alt={c.name}
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                className="absolute inset-0 flex items-center justify-center bg-white/90 rounded-2xl shadow-lg opacity-0 group-hover:opacity-100 transition"
+              >
                 <a
                   href={c.link}
-                  className="text-blue-400 text-sm md:text-lg gap-4 flex justify-between items-center font-bold italic"
                   target="_blank"
+                  className="flex items-center gap-2 text-blue-600 font-semibold"
                 >
-                 <CiLink />
-
-                  {c.name}{" "}
+                  <CiLink className="text-lg" />
+                  {c.name}
                 </a>
-                {/* <div className="absolute bottom-4 w-8 h-1 bg-blue-600 rounded-full"></div> */}
-              </div>
-            </div>
-            // <div
-            //   key={index}
-            //   className="group hover:translate-y-1 px-2 transition-all duration-300 bg-white pr-5 flex items-center w-50 justify-between mx-auto   rounded-3xl "
-            // >
-
-            // </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
-        <img src="/3davater.png" alt="" className="w-100 mx-auto m-5" />
-        <div className="bg-white pt-5 rounded-2xl mt-10  text-center text-black">
-          <h2 className="text-3xl py-5 ">Contact Me</h2>
-          <form action="" className="p-10 max-w-4xl mx-auto">
-            <div className=" flex w-full flex-col md:flex-row justify-between mx-auto gap-5 mb-5">
+
+        {/* Avatar */}
+        <motion.img
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          src="/3davater.png"
+          alt="Avatar"
+          className="w-64 md:w-80 mx-auto mt-16 drop-shadow-xl"
+        />
+
+        {/* Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
+          className="bg-white/95 backdrop-blur-md pt-5 rounded-2xl mt-14 text-center text-black shadow-2xl"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold py-5">Contact Me</h2>
+          <form className="p-8 md:p-12 max-w-3xl mx-auto space-y-5">
+            {/* Row 1 */}
+            <div className="flex flex-col md:flex-row gap-5">
               <div className="relative w-full">
-                <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
+                <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
                 <input
-                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100  focus:outline-none "
+                  className="w-full p-3 pl-10 rounded-xl bg-gray-100 focus:ring-2 focus:ring-yellow-400 outline-none"
                   type="text"
                   placeholder="Name*"
                 />
               </div>
               <div className="relative w-full">
-                <MdEmail className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500" />
+                <MdEmail className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
                 <input
-                  className="w-full p-3 pl-10 rounded-2xl bg-gray-100  focus:outline-none"
+                  className="w-full p-3 pl-10 rounded-xl bg-gray-100 focus:ring-2 focus:ring-yellow-400 outline-none"
+                  type="email"
                   placeholder="Email*"
-                  type="text"
                 />
               </div>
             </div>
-            <div className=" flex w-full flex-col md:flex-row justify-between mx-auto gap-5 mb-5">
+
+            {/* Row 2 */}
+            <div className="flex flex-col md:flex-row gap-5">
               <div className="relative w-full">
-                <FaMobileAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <FaMobileAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
-                  className="w-full pl-10 bg-gray-100 p-3 rounded-2xl focus:outline-none"
+                  className="w-full p-3 pl-10 rounded-xl bg-gray-100 focus:ring-2 focus:ring-yellow-400 outline-none"
                   placeholder="Mobile*"
-                  type="text"
+                  type="tel"
                 />
               </div>
               <div className="relative w-full">
-                <BiCategory className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                <BiCategory className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
-                  className="w-full pl-10 bg-gray-100 p-3 rounded-2xl focus:outline-none"
+                  className="w-full p-3 pl-10 rounded-xl bg-gray-100 focus:ring-2 focus:ring-yellow-400 outline-none"
                   placeholder="Subject*"
                   type="text"
                 />
               </div>
             </div>
 
-            <div className="">
-              <textarea
-                placeholder="Your message here..."
-                className=" focus:outline-none bg-gray-100 w-full mt-5 rounded-2xl p-10 min-h-[150px]"
-              ></textarea>
-            </div>
-            <button className="bg-yellow-500 text-white px-10 mt-2 p-4 rounded-2xl border-3 transition duration-300 font-bold border-transparent hover:bg-white/60 hover:text-gold hover:border-gold">
-              Send
-            </button>
+            {/* Message */}
+            <textarea
+              placeholder="Your message here..."
+              className="w-full p-4 rounded-xl bg-gray-100 focus:ring-2 focus:ring-yellow-400 outline-none min-h-[150px]"
+            ></textarea>
+
+            {/* Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-yellow-500 text-white px-8 py-3 rounded-xl font-bold shadow-md transition hover:bg-yellow-600"
+            >
+              Send Message
+            </motion.button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

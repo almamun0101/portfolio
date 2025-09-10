@@ -1,184 +1,379 @@
 "use client";
-import React from "react";
-import { SiTailwindcss, SiNextdotjs, SiMongodb } from "react-icons/si";
-import {
-  FaHtml5,
-  FaJs,
-  FaSass,
-  FaCss3,
-  FaBootstrap,
-  FaGithub,
-  FaReact,
-} from "react-icons/fa";
-import { IoLogoFirebase } from "react-icons/io5";
-import { motion } from "framer-motion";
-import { Dock, DockIcon } from "@/components/magicui/dock";
-import { DotScreenShader } from "@/components/dot-shader-background";
+import React, { useState } from "react";
+import { motion, useInView } from "framer-motion";
 
-const techIcons = {
-  React: <FaReact className="text-blue-400 text-2xl" />,
-  Tailwind: <SiTailwindcss className="text-cyan-400 text-2xl" />,
-  Nextjs: <SiNextdotjs className="text-black text-2xl" />,
-  MERN: <SiMongodb className="text-green-500 text-2xl" />,
-  Html: <FaHtml5 className="text-orange-500 text-2xl" />,
-  Js: <FaJs className="text-yellow-300 text-2xl" />,
-  Sass: <FaSass className="text-pink-300 text-2xl" />,
-  Css: <FaCss3 className="text-blue-500 text-2xl" />,
-  Bootstrap: <FaBootstrap className="text-violet-600 text-2xl" />,
-  Firebase: <IoLogoFirebase className="text-red-400 text-2xl" />,
-  Git: <FaGithub className="text-black text-2xl" />,
+// Mock icons since we don't have react-icons
+const IconWrapper = ({ children, className }) => (
+  <div className={`flex items-center justify-center ${className}`}>
+    {children}
+  </div>
+);
+
+// Simplified icon components
+const ReactIcon = () => <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs font-bold text-white">R</div>;
+const TailwindIcon = () => <div className="w-6 h-6 bg-cyan-400 rounded-full flex items-center justify-center text-xs font-bold text-white">T</div>;
+const NextIcon = () => <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center text-xs font-bold text-white">N</div>;
+const MongoIcon = () => <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-bold text-white">M</div>;
+const HtmlIcon = () => <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-xs font-bold text-white">H</div>;
+const JsIcon = () => <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-black">J</div>;
+const SassIcon = () => <div className="w-6 h-6 bg-pink-400 rounded-full flex items-center justify-center text-xs font-bold text-white">S</div>;
+const CssIcon = () => <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-bold text-white">C</div>;
+const BootstrapIcon = () => <div className="w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center text-xs font-bold text-white">B</div>;
+const FirebaseIcon = () => <div className="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center text-xs font-bold text-white">F</div>;
+const GitIcon = () => <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center text-xs font-bold text-white">G</div>;
+
+const techStack = [
+  { name: "React", icon: <ReactIcon />, color: "from-blue-400 to-blue-600" },
+  { name: "Tailwind", icon: <TailwindIcon />, color: "from-cyan-400 to-cyan-600" },
+  { name: "Next.js", icon: <NextIcon />, color: "from-gray-700 to-gray-900" },
+  { name: "MongoDB", icon: <MongoIcon />, color: "from-green-400 to-green-600" },
+  { name: "HTML5", icon: <HtmlIcon />, color: "from-orange-400 to-orange-600" },
+  { name: "JavaScript", icon: <JsIcon />, color: "from-yellow-300 to-yellow-500" },
+  { name: "Sass", icon: <SassIcon />, color: "from-pink-400 to-pink-600" },
+  { name: "CSS3", icon: <CssIcon />, color: "from-blue-400 to-blue-600" },
+  { name: "Bootstrap", icon: <BootstrapIcon />, color: "from-violet-500 to-violet-700" },
+  { name: "Firebase", icon: <FirebaseIcon />, color: "from-red-400 to-red-600" },
+  { name: "Git", icon: <GitIcon />, color: "from-gray-600 to-gray-800" },
+];
+
+const designTools = [
+  { name: "Figma", color: "from-purple-500 to-pink-500" },
+  { name: "Adobe XD", color: "from-purple-600 to-blue-500" },
+];
+
+const devTools = [
+  { name: "VS Code", color: "from-blue-500 to-blue-700" },
+  { name: "GitHub", color: "from-gray-700 to-gray-900" },
+  { name: "Postman", color: "from-orange-500 to-red-500" },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
 
-const design = [
-  { name: "Figma", logo: "/figma.png" },
-  { name: "Adobe XD", logo: "/adobexd.png" },
-];
-const tools = [
-  { name: "VS Code", logo: "/vscodelogo.png" },
-  { name: "Git Hub", logo: "/githublogo.png" },
-  { name: "Postman", logo: "/postmanlogo.png" },
-];
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.8,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 100,
+    rotateX: -15,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+      duration: 0.8,
+    },
+  },
+  hover: {
+    y: -10,
+    rotateX: 5,
+    scale: 1.02,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 10,
+    },
+  },
+};
 
 const About = () => {
-  const techIconsArray = Object.entries(techIcons);
-  const firstRow = techIconsArray?.slice(0, 6);
-  const secRow = techIconsArray.slice(6);
-
+  const [activeTab, setActiveTab] = useState("skills");
+  
   return (
-    <div className=" w-full h-300 flex flex-col  items-center justify-center relative bg-black px-5">
-      <div className="hidden md:block absolute inset-0">
-        <DotScreenShader />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-slate-900/40 to-slate-900"></div>
+        <motion.div 
+          className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
 
-      <div className="container py-0 z-10">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        {/* Header */}
         <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
+          <motion.h1 
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent mb-6"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            About Me
+          </motion.h1>
+          <motion.p 
+            className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            Crafting digital experiences with passion, precision, and a touch of magic ✨
+          </motion.p>
+        </motion.div>
+
+        {/* Main Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+          {/* Who I Am Card */}
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            viewport={{ once: true, margin: "-100px" }}
+            className="group"
+          >
+            <div className="relative p-8 rounded-3xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-purple-500/20 shadow-2xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-xl">👨‍💻</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Who I Am</h3>
+                </div>
+                <div className="space-y-4 text-gray-300 leading-relaxed">
+                  <p>I am a passionate web developer dedicated to building clean, modern, and efficient digital experiences that make a difference.</p>
+                  <p>My background combines both design aesthetics and front-end coding skills, allowing me to deliver visually stunning and performant interfaces.</p>
+                  <p>I thrive on turning complex problems into intuitive, user-friendly solutions that users love to interact with.</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* My Approach Card */}
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            viewport={{ once: true, margin: "-100px" }}
+            className="group"
+          >
+            <div className="relative p-8 rounded-3xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-cyan-500/20 shadow-2xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-xl">🚀</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">My Approach</h3>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    "User-centered design thinking",
+                    "Performance-first development",
+                    "Mobile-responsive solutions",
+                    "Collaborative team player",
+                    "Continuous learning mindset"
+                  ].map((skill, index) => (
+                    <motion.div 
+                      key={skill}
+                      className="flex items-center text-gray-300"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                    >
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 mr-3"></div>
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Tab Navigation */}
+        <motion.div 
+          className="flex justify-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex bg-slate-800/50 backdrop-blur-xl rounded-full p-2 border border-purple-500/20">
+            {[
+              { id: "skills", label: "Technical Skills", icon: "⚡" },
+              { id: "design", label: "Design Tools", icon: "🎨" },
+              { id: "tools", label: "Dev Tools", icon: "🛠️" }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-6 py-3 rounded-full transition-all duration-300 flex items-center space-x-2 ${
+                  activeTab === tab.id 
+                    ? "bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg" 
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                <span className="text-lg">{tab.icon}</span>
+                <span className="font-medium hidden sm:inline">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="max-w-6xl mx-auto"
+        >
+          {activeTab === "skills" && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotateY: 10,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  className="group relative"
+                >
+                  <div className={`relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br ${tech.color} shadow-xl cursor-pointer overflow-hidden`}>
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                      <div className="transform group-hover:scale-110 transition-transform duration-300">
+                        {tech.icon}
+                      </div>
+                      <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
+                        {tech.name}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "design" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {designTools.map((tool, index) => (
+                <motion.div
+                  key={tool.name}
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateX: 5,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  className="group"
+                >
+                  <div className={`relative p-8 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}>
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="text-4xl mb-4">🎨</div>
+                      <h3 className="text-white font-bold text-xl">{tool.name}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "tools" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {devTools.map((tool, index) => (
+                <motion.div
+                  key={tool.name}
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateY: 5,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  className="group"
+                >
+                  <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}>
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="text-3xl mb-3">🛠️</div>
+                      <h3 className="text-white font-bold text-lg">{tool.name}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div 
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className=""
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-10">
-            About Me
-          </h2>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300"
+          >
+            Let's Build Something Amazing Together
+          </motion.button>
         </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8  mx-auto py-5">
-          {/* Who I Am Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false }}
-          >
-            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 backdrop-blur-md rounded-xl shadow-xl p-6  hover:-translate-y-2 hover:shadow-yellow-400/30 transition duration-300">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
-                Who I Am
-              </h3>
-              <p className="text-gray-300 mb-2">
-                I am a passionate web developer dedicated to building clean,
-                modern, and efficient digital experiences.
-              </p>
-              <p className="text-gray-300 mb-2">
-                My background combines both design aesthetics and front-end
-                coding skills, allowing me to deliver visually appealing and
-                performant interfaces.
-              </p>
-              <p className="text-gray-300">
-                I thrive on turning complex problems into intuitive,
-                user-friendly designs.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* My Skills Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false }}
-          >
-            <div className="bg-gray-800 bg-opacity-60 border border-yellow-500 hover:-translate-y-2 backdrop-blur-md rounded-xl shadow-xl p-6 hover:shadow-yellow-400/30 transition duration-300">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
-                My Skills
-              </h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2">
-                <li>HTML5, CSS3, JavaScript (ES6+)</li>
-                <li>React.js, Redux Toolkit</li>
-                <li>Responsive Web Design</li>
-                <li>UI/UX Design & Prototyping</li>
-                <li>Version Control with Git & GitHub</li>
-              </ul>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-      <div className="py-5 z-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
-          Design I Used
-        </h2>
-        <div className="flex justify-center flex-wrap gap-4">
-          {design.map((d, index) => (
-            <div
-              key={index}
-              className="bg-white flex gap-2 justify-between items-center pr-4  rounded-full hover:scale-110 trasition duration-200"
-            >
-              <img
-                src={d.logo}
-                alt=""
-                className="w-10 h-10 border bg-white  rounded-full hover:scale-110 trasition duration-200"
-              />
-              <h3 className="text-black ">{d.name}</h3>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="py-5 z-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
-          Skill's
-        </h2>
-        <div className="flex justify-center flex-wrap gap-4">
-          {firstRow.map(([key, value]) => (
-            <div
-              key={key}
-              className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200"
-            >
-              {value}
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center flex-wrap gap-4 mt-5">
-          {secRow.map(([key, value]) => (
-            <div
-              key={key}
-              className="bg-white p-6 rounded-full hover:scale-110 trasition duration-200"
-            >
-              {value}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="py-5 z-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 mb-5">
-          Tools I Used
-        </h2>
-        <div className="flex justify-center flex-wrap gap-4">
-          {tools.map((d, index) => (
-            <div
-              key={index}
-              className="bg-white flex gap-5 py-1 justify-between items-center px-4  rounded-full hover:scale-110 trasition duration-200"
-            >
-              <img
-                src={d.logo}
-                alt=""
-                className="w-10 h-10 border bg-white  rounded-full hover:scale-110 trasition duration-200"
-              />
-              <h3 className="text-black ">{d.name}</h3>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
