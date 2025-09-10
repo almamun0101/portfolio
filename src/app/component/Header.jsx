@@ -178,21 +178,21 @@ const ShootingStars = ({
 const skills = [
   {
     text: "HTML",
-     icon: "./html.svg",
+    icon: "./html.svg",
     color: "from-orange-400 to-red-500",
     position: { desktop: "top-[5%] left-[8%]", mobile: "order-1" },
     direction: { x: -100, y: -50 },
   },
   {
     text: "Bootstrap",
-   icon: "./bootstrap.svg",
+    icon: "./bootstrap.svg",
     color: "from-purple-400 to-pink-500",
     position: { desktop: "top-[5%] right-[8%]", mobile: "order-2" },
     direction: { x: 100, y: -50 },
   },
   {
     text: "CSS",
-      icon: "./css.svg",
+    icon: "./css.svg",
     color: "from-blue-400 to-cyan-500",
     position: { desktop: "top-[25%] left-[2%]", mobile: "order-3" },
     direction: { x: -100, y: 0 },
@@ -450,7 +450,7 @@ const Header = () => {
             </motion.div>
 
             {/* Skills Grid - Mobile */}
-            <div className="lg:hidden grid grid-cols-2 gap-4 mt-12">
+            <div className="lg:hidden grid grid-cols-2 gap-5 mt-12">
               {skills.map((skill, idx) => (
                 <motion.div
                   key={idx}
@@ -460,10 +460,10 @@ const Header = () => {
                   whileHover={{ scale: 1.05 }}
                   onHoverStart={() => setIsHovered(idx)}
                   onHoverEnd={() => setIsHovered(null)}
-                  className={`relative p-4 rounded-xl bg-gradient-to-r ${skill.color} backdrop-blur-sm border border-white/20 shadow-lg cursor-pointer transition-all duration-300`}
+                  className={`relative p-4 rounded-xl flex justify-center border backdrop-blur-sm border-yellow-500 hover:border-2 shadow-lg cursor-pointer transition-all duration-300`}
                 >
-                  <div className="flex items-center gap-3">
-                   <img src="/public/html.svg" alt="" />
+                  <div className="flex items-center gap-5">
+                    <img src={skill.icon} alt={skill.text} className="w-8" />
                     <span className="font-bold text-white text-lg">
                       {skill.text}
                     </span>
@@ -510,7 +510,7 @@ const Header = () => {
                     className={`relative p-4 rounded-2xl bg-gradient-to-r ${skill.color} backdrop-blur-sm border-2 border-white/30 shadow-xl transition-all duration-300`}
                   >
                     <div className="flex items-center gap-3">
-                      <img src={skill.icon} alt="" className="w-8" />
+                      <img src={skill.icon} alt={skill.text} className="w-8" />
                       <span className="font-bold text-white text-lg xl:text-xl">
                         {skill.text}
                       </span>
