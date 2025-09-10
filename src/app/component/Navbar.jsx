@@ -11,32 +11,37 @@ import { MdOutlineContactSupport } from "react-icons/md";
 const menuItems = [
   {
     title: "Home",
+    href:"home",
     icon: <RiHome2Line size={25} />,
     gradient: ["from-[#a955ff]", "to-[#ea51ff]"],
   },
   {
     title: "About",
+     href:"about",
     icon: <TiInfoLarge size={25} />,
     gradient: ["from-[#56CCF2]", "to-[#2F80ED]"],
   },
   {
     title: "Projects",
+     href:"projects",
     icon: <MdWeb size={25} />,
     gradient: ["from-[#FF9966]", "to-[#FF5E62]"],
   },
   {
     title: "Git",
+     href:"profile",
     icon: <FaGithub size={25} />,
     gradient: ["from-[#80FF72]", "to-[#7EE8FA]"],
   },
   {
     title: "Contact",
+     href:"contact",
     icon: <MdOutlineContactSupport size={25} />,
     gradient: ["from-[#ffa9c6]", "to-[#f434e2]"],
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({ scrollToSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hovered, setHovered] = useState(null);
 
@@ -56,8 +61,8 @@ const Navbar = () => {
 
   return (
     <header className="relative container flex justify-center">
-      <div className=" absolute top-0 ">
-        <nav className=" z-10 px-5 py-5 rounded-full flex md:flex-row flex-col gap-5  justify-center items-center shadow-md relative">
+      <div className=" fixed top-0 z-50">
+        <nav className=" z-10 my-3 rounded-full flex md:flex-row flex-col gap-5  justify-center items-center  relative">
           {/* <a href="/" className="px-10 h-[50px] rounded-full 
               bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
               flex items-center justify-center font-bold text-xl text-black">
@@ -72,6 +77,7 @@ const Navbar = () => {
                   key={i}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
+                  onClick={() => scrollToSection(item.href)}
                   className={`
               relative list-none w-[50px] h-[50px] rounded-full 
               bg-white shadow-[0_10px_25px_rgba(0,0,0,0.1)]
@@ -121,8 +127,6 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-
-         
         </nav>
       </div>
     </header>
