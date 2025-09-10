@@ -1,33 +1,20 @@
 "use client";
-import React from "react";
-import { SiTailwindcss, SiNextdotjs, SiMongodb } from "react-icons/si";
-import {
-  FaHtml5,
-  FaJs,
-  FaSass,
-  FaCss3,
-  FaBootstrap,
-  FaGithub,
-  FaReact,
-} from "react-icons/fa";
-import { IoLogoFirebase } from "react-icons/io5";
-import { animate, motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-
-
-
+// Mock icons since we can't import react-icons
 const techIcons = {
-  React: <FaReact className="text-blue-400 text-2xl" />,
-  Tailwind: <SiTailwindcss className="text-cyan-400 text-2xl" />,
-  Nextjs: <SiNextdotjs className="text-black text-2xl" />,
-  MERN: <SiMongodb className="text-green-500 text-2xl" />,
-  Html: <FaHtml5 className="text-orange-500 text-2xl" />,
-  Js: <FaJs className="text-yellow-300 text-2xl" />,
-  Sass: <FaSass className="text-pink-300 text-2xl" />,
-  Css: <FaCss3 className="text-blue-500 text-2xl" />,
-  Bootstrap: <FaBootstrap className="text-violet-600 text-2xl" />,
-  Firebase: <IoLogoFirebase className="text-red-400 text-2xl" />,
-  Git: <FaGithub className="text-black text-2xl" />,
+  React: <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold">R</div>,
+  Tailwind: <div className="w-6 h-6 bg-cyan-400 rounded-full flex items-center justify-center text-white text-xs font-bold">T</div>,
+  Nextjs: <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs font-bold">N</div>,
+  MERN: <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">M</div>,
+  Html: <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">H</div>,
+  Js: <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-black text-xs font-bold">J</div>,
+  Sass: <div className="w-6 h-6 bg-pink-400 rounded-full flex items-center justify-center text-white text-xs font-bold">S</div>,
+  Css: <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">C</div>,
+  Bootstrap: <div className="w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center text-white text-xs font-bold">B</div>,
+  Firebase: <div className="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center text-white text-xs font-bold">F</div>,
+  Git: <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center text-white text-xs font-bold">G</div>,
 };
 
 const projects = [
@@ -35,246 +22,368 @@ const projects = [
     name: "Chatting App",
     cat: "E-commerce",
     based: "React",
-    img: "/chattingapp.png",
+    img: "/api/placeholder/400/250",
     tech: ["Tailwind", "React", "Firebase", "Git", "Html", "Js"],
     github: "https://github.com/almamun0101/Chatting-App",
     live: "https://chattingappalmamun0101.netlify.app",
+    description: "Real-time messaging application with modern UI"
   },
   {
     name: "HealthCare",
-    cat: "Apointment System",
+    cat: "Appointment System",
     based: "React",
-    img: "/Healthcare.png",
+    img: "/api/placeholder/400/250",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/doctor-apointment-system",
     live: "https://doctor-apontment-system-almamun0101.netlify.app/",
+    description: "Medical appointment booking system"
   },
   {
-    name: "Postivus",
+    name: "Positivus",
     cat: "Digital Marketing",
     based: "React",
-    img: "/Positivus.png",
+    img: "/api/placeholder/400/250",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/Devsaround-Positivus",
     live: "https://positivus-almamun0101.netlify.app/",
+    description: "Digital marketing agency website"
   },
   {
     name: "Planto",
-    cat: "Tree planto commerce",
-   based: "React",
-    img: "/planto.png",
+    cat: "Tree Plant Commerce",
+    based: "React",
+    img: "/api/placeholder/400/250",
     tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/Planto",
     live: "https://plantoalmamun0101.netlify.app/",
+    description: "E-commerce platform for plant enthusiasts"
   },
   {
     name: "Exclusive",
     cat: "E-commerce",
     based: "React",
-    img: "/Exclusive.png",
-    tech: ["Nextjs","React", "Tailwind", "Html",  "Js", "Git"],
+    img: "/api/placeholder/400/250",
+    tech: ["Nextjs","React", "Tailwind", "Html", "Js", "Git"],
     github: "https://github.com/almamun0101/exclusive",
     live: "https://exclusivealmamun0101.netlify.app/",
+    description: "Premium shopping experience platform"
   },
   {
-    name: "Protfolio",
+    name: "Portfolio",
     cat: "Content",
     based: "React",
-    img: "/protfolio.png",
+    img: "/api/placeholder/400/250",
     tech: ["Nextjs", "React", "Tailwind", "Git", "Html", "Js"],
     github: "https://github.com/almamun0101/portfolio",
     live: "https://almamun0101.netlify.app/",
-  },
-  {
-    name: "Vagitable-mart",
-    cat: "Portfolio",
-    based: "React",
-    img: "/vegitablemart.png",
-    tech: ["React", "Tailwind", "Git", "Html", "Js"],
-    github: "https://github.com/almamun0101/E-mart",
-    live: "https://e-martalmamun0101.netlify.app/",
-  },
-  {
-    name: "Finsweet",
-    cat: "Productivity",
-    based: "MERN",
-    img: "/fineset.png",
-    tech: ["Sass", "Git", "Html", "Css", "Bootstrap"],
-    github: "https://github.com/almamun0101/finsweet",
-    live: "https://finsweetalmamun0101.netlify.app/",
-  },
-  {
-    name: "Gamer-web",
-    cat: "Content",
-    based: "React",
-    img: "/gammerweb.png",
-    tech: ["React", "Tailwind", "Git", "Html"],
-    github: "https://github.com/almamun0101/Gamer-web",
-    live: "https://gamerwebalmamunkha.netlify.app/",
-  },
-  {
-    name: "Honcok",
-    cat: "Content",
-    based: "Bootstrap",
-    img: "/hancok.png",
-    tech: ["Bootstrap", "Git", "Html", "Css"],
-    github: "https://github.com/almamun0101/honcok",
-    live: "https://honcokalmamun0101.netlify.app/",
-  },
-  {
-    name: "Holmberg",
-    cat: "Content",
-    based: "React",
-    img: "/holmberg.png",
-    tech: ["React", "Tailwind", "Git", "Html", "Js"],
-    github: "https://github.com/almamun0101/Holmberg",
-    live: "https://holmbergalmamun0101.netlify.app/",
-  },
-  {
-    name: "innovate",
-    cat: "Content",
-    based: "Sass",
-    img: "/innovate.png",
-    tech: ["Sass", "Git", "Html", "Css", "Js"],
-    github: "https://github.com/almamun0101/innovate",
-    live: "https://innovatealmamun0101.netlify.app/",
-  },
-  {
-    name: "omah",
-    cat: "Content",
-    based: "Tailwind",
-    img: "/omah.png",
-    tech: ["Html", "Css", "Git"],
-    github: "https://github.com/almamun0101/omah",
-    live: "https://omahalmamun0101.netlify.app/",
-  },
-  {
-    name: "SaulDesign",
-    cat: "Content",
-    based: "Tailwind",
-    img: "/sauldesign.png",
-    tech: ["React", "Tailwind", "Html", "Git", "Js"],
-    github: "https://github.com/almamun0101/SaulDesign",
-    live: "https://sauldesign-almamun0101.netlify.app/",
-  },
-  {
-    name: "To Do List",
-    cat: "Content",
-    based: "Tailwind",
-    img: "/todolist.png",
-    tech: ["React", "Tailwind", "Html", "Firebase", "Js", "Git"],
-    github: "https://github.com/almamun0101/to-do-list",
-    live: "https://todolistalmamunkhan0101.netlify.app/",
-  },
+    description: "Personal portfolio showcase"
+  }
 ];
 
+const filterCategories = ["All", "E-commerce", "Content", "Appointment System", "Digital Marketing"];
+
 const Projects = () => {
-  const getIcon = (icon) => {
-    return icon?.map((i, index) => (
-      <span
+  const [filter, setFilter] = useState("All");
+  const [hoveredProject, setHoveredProject] = useState(null);
+
+  const filteredProjects = filter === "All" 
+    ? projects 
+    : projects.filter(project => project.cat === filter);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const projectVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -10,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const getIcon = (techArray) => {
+    return techArray?.map((tech, index) => (
+      <motion.div
         key={index}
-        className="bg-white rounded-full p-2 hover:scale-110 transition duration-200"
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ delay: index * 0.1, duration: 0.3 }}
+        whileHover={{ scale: 1.2, rotate: 10 }}
+        className="relative group"
       >
-        {techIcons[i]}
-      </span>
+        <div className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300">
+          {techIcons[tech]}
+        </div>
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          {tech}
+        </div>
+      </motion.div>
     ));
   };
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#0f0f0f] to-[#1f1f1f] py-20 px-4 sm:px-6 lg:px-20 text-white">
-      <div className="container">
-       
-        <h2 className="text-3xl  items-center mx-auto font-extrabold text-center mb-16">
-          <span className="italic p-5 text-6xl text-gold font-extrabold">
-            {projects.length}
-          </span>
-          Projects
-        </h2>
+    <div className="relative min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#16213e] py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+            opacity: [0.1, 0.3, 0.1]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"
+        />
+        <motion.div 
+          animate={{
+            y: [0, -50, 0],
+            x: [0, 30, 0],
+            opacity: [0.05, 0.15, 0.05]
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-pink-500/20 to-cyan-400/20 rounded-full blur-3xl"
+        />
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((p, i) => {
-            const columns = 3;
-            const colIndex = i % columns;
-            let initial;
-            if (colIndex === 0) {
-              initial = { opacity: 0, x: -100 }; // From left
-            } else if (colIndex === columns - 1) {
-              initial = { opacity: 0, x: 100 }; // From right
-            } else {
-              initial = { opacity: 0, y: 100 }; // From bottom
-            }
-            return (
-              <motion.div
-                key={i}
-                initial={initial}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="group z-50 relative overflow-hidden rounded-2xl border border-gray-700 bg-white/5 backdrop-blur-md p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_#facc15]"
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <motion.div 
+            className="flex items-center justify-center gap-4 mb-6"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.span 
+              className="text-6xl sm:text-8xl md:text-9xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent"
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {filteredProjects.length}
+            </motion.span>
+            <div className="text-left">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+                Projects
+              </h2>
+              <p className="text-gray-400 text-lg mt-2">Crafted with passion & precision</p>
+            </div>
+          </motion.div>
+
+          {/* Filter Buttons */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {filterCategories.map((category) => (
+              <motion.button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
+                  filter === category
+                    ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-400/25"
+                    : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {/* Icon Badge */}
-                <div className="flex items-center  justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center shadow-md group-hover:scale-110 transition">
-                      {techIcons[p.based]}
-                    </div>
+                {category}
+              </motion.button>
+            ))}
+          </motion.div>
+        </motion.div>
 
-                    {/* Title */}
-                    <div>
-                      <h3 className="text-xl font-semibold group-hover:text-yellow-400 transition">
-                        {p.name}
-                      </h3>
-                      <p className="text-sm text-gray-400 italic">{p.cat}</p>
+        {/* Projects Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={`${project.name}-${index}`}
+                variants={projectVariants}
+                whileHover="hover"
+                onHoverStart={() => setHoveredProject(index)}
+                onHoverEnd={() => setHoveredProject(null)}
+                className="group relative"
+              >
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 p-6 h-full transition-all duration-500 hover:border-yellow-400/50">
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-400/0 via-yellow-400/0 to-yellow-400/0 group-hover:from-yellow-400/10 group-hover:via-yellow-400/5 group-hover:to-yellow-400/10 transition-all duration-500" />
+                  
+                  {/* Header */}
+                  <div className="relative z-10 flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <motion.div 
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        {techIcons[project.based]}
+                      </motion.div>
+                      <div>
+                        <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300">
+                          {project.name}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-400 font-medium">
+                          {project.cat}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  {/* <div className="flex gap-1">{getIcon(p.tech)}</div> */}
-                </div>
-                <div className="">
-                  <img
-                    src={p?.img || "/missing.jpg"}
-                    alt={p.name}
-                    className="hover:scale-110 transition duration-500 my-5 w-full"
-                  />
-                </div>
-                <div className="">
-                  <h2>Tech I Used </h2>
-                  <div className=" flex flex-wrap gap-3 p-2">
-                    {getIcon(p?.tech)}
-                  </div>
-                </div>
 
-                {/* Links */}
-                <div className="mt-6 flex justify-between text-sm text-yellow-300 font-medium">
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-yellow-500 underline"
+                  {/* Project Image */}
+                  <motion.div 
+                    className="relative mb-4 rounded-lg overflow-hidden bg-gray-800/50"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    GitHub Code
-                  </a>
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-yellow-500 underline"
-                  >
-                    Live Preview
-                  </a>
+                    <img
+                      src={project.img}
+                      alt={project.name}
+                      className="w-full h-40 sm:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </motion.div>
+
+                  {/* Description */}
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="mb-6">
+                    <h4 className="text-white font-medium mb-3 text-sm">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {getIcon(project.tech)}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 mt-auto">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium text-center transition-all duration-300 border border-white/20 hover:border-white/40 text-sm"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="inline-block mr-2">🔗</span>
+                      GitHub
+                    </motion.a>
+                    <motion.a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black px-4 py-2 rounded-lg font-bold text-center transition-all duration-300 shadow-lg hover:shadow-xl text-sm"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="inline-block mr-2">🚀</span>
+                      Live Demo
+                    </motion.a>
+                  </div>
                 </div>
               </motion.div>
-            );
-          })}
-        </div>
-        <div className="flex justify-center items-center my-10">
-          <a className="  px-5 py-2 flex items-center gap-5  rounded-full font-medium transition-all bg-gold/10 text-yellow-400 border-2 border-yellow-400 hover:scale-105 duration-300">
-            <FaGithub className="border border-gold rounded-full " size={25} />
-            My Git
-          </a>
-        </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Blurred Bubbles */}
-        <div className="absolute top-[30%] left-10 w-[180px] h-[180px] bg-yellow-400 rounded-full blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-[200px] h-[200px] bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse delay-300" />
+        {/* GitHub CTA */}
+        <motion.div 
+          className="flex justify-center items-center mt-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <motion.a
+            href="https://github.com/almamun0101"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-8 py-4 bg-gradient-to-r from-gray-800 to-black rounded-full font-bold text-white border-2 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-lg hover:shadow-yellow-400/25"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 0 25px rgba(250, 204, 21, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="relative z-10 flex items-center gap-3 text-lg">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-xs"
+              >
+                G
+              </motion.div>
+              View All Projects on GitHub
+            </span>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/0 via-yellow-400/0 to-yellow-400/0 group-hover:from-yellow-400/10 group-hover:via-yellow-400/20 group-hover:to-yellow-400/10 transition-all duration-500" />
+          </motion.a>
+        </motion.div>
       </div>
     </div>
   );
