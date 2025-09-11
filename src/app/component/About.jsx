@@ -9,31 +9,18 @@ const IconWrapper = ({ children, className }) => (
   </div>
 );
 
-// Simplified icon components
-const ReactIcon = () => <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs font-bold text-white">R</div>;
-const TailwindIcon = () => <div className="w-6 h-6 bg-cyan-400 rounded-full flex items-center justify-center text-xs font-bold text-white">T</div>;
-const NextIcon = () => <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center text-xs font-bold text-white">N</div>;
-const MongoIcon = () => <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-bold text-white">M</div>;
-const HtmlIcon = () => <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-xs font-bold text-white">H</div>;
-const JsIcon = () => <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-black">J</div>;
-const SassIcon = () => <div className="w-6 h-6 bg-pink-400 rounded-full flex items-center justify-center text-xs font-bold text-white">S</div>;
-const CssIcon = () => <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-bold text-white">C</div>;
-const BootstrapIcon = () => <div className="w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center text-xs font-bold text-white">B</div>;
-const FirebaseIcon = () => <div className="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center text-xs font-bold text-white">F</div>;
-const GitIcon = () => <div className="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center text-xs font-bold text-white">G</div>;
-
 const techStack = [
-  { name: "React", icon: <ReactIcon />, color: "from-blue-400 to-blue-600" },
-  { name: "Tailwind", icon: <TailwindIcon />, color: "from-cyan-400 to-cyan-600" },
-  { name: "Next.js", icon: <NextIcon />, color: "from-gray-700 to-gray-900" },
-  { name: "MongoDB", icon: <MongoIcon />, color: "from-green-400 to-green-600" },
-  { name: "HTML5", icon: <HtmlIcon />, color: "from-orange-400 to-orange-600" },
-  { name: "JavaScript", icon: <JsIcon />, color: "from-yellow-300 to-yellow-500" },
-  { name: "Sass", icon: <SassIcon />, color: "from-pink-400 to-pink-600" },
-  { name: "CSS3", icon: <CssIcon />, color: "from-blue-400 to-blue-600" },
-  { name: "Bootstrap", icon: <BootstrapIcon />, color: "from-violet-500 to-violet-700" },
-  { name: "Firebase", icon: <FirebaseIcon />, color: "from-red-400 to-red-600" },
-  { name: "Git", icon: <GitIcon />, color: "from-gray-600 to-gray-800" },
+  { name: "React", icon: "react.svg", color: "from-blue-400 to-blue-600" },
+  { name: "Tailwind", icon: "tailwind.svg", color: "from-cyan-400 to-cyan-600" },
+  { name: "Next.js", icon: "nextjs.png", color: "from-gray-700 to-gray-900" },
+  { name: "MongoDB", icon: "mongodb.png", color: "from-green-400 to-green-600" },
+  { name: "HTML5", icon: "html.svg", color: "from-orange-400 to-orange-600" },
+  { name: "JavaScript", icon : "js.svg", color: "from-yellow-300 to-yellow-500" },
+  { name: "Sass", icon: "sass.svg", color: "from-pink-400 to-pink-600" },
+  { name: "CSS3", icon:"css.svg", color: "from-blue-400 to-blue-600" },
+  { name: "Bootstrap", icon: "bootstrap.svg", color: "from-violet-500 to-violet-700" },
+  { name: "Firebase", icon:"firebase.png", color: "from-red-400 to-red-600" },
+  { name: "Git", icon:"githublogo.png", color: "from-gray-600 to-gray-800" },
 ];
 
 const designTools = [
@@ -280,7 +267,7 @@ const About = () => {
           className="max-w-6xl mx-auto"
         >
           {activeTab === "skills" && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
               {techStack.map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -292,11 +279,11 @@ const About = () => {
                   }}
                   className="group relative"
                 >
-                  <div className={`relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br ${tech.color} shadow-xl cursor-pointer overflow-hidden`}>
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                  <div className={`relative p-4 sm:p-6  bg-gradient-to-br  text-black rounded-full cursor-pointer overflow-hidden`}>
+                    <div className="absolute inset-0  transition-opacity duration-300"></div>
+                    <div className="relative z-10 flex flex-col items-center  space-y-2 sm:space-y-3">
                       <div className="transform group-hover:scale-110 transition-transform duration-300">
-                        {tech.icon}
+                        <img src={tech.icon} alt={tech.name} />
                       </div>
                       <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
                         {tech.name}

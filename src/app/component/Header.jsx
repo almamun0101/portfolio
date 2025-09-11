@@ -377,7 +377,8 @@ const Header = () => {
               variants={itemVariants}
             >
               <motion.button
-                className="group relative bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg shadow-lg overflow-hidden"
+                className="group relative border-2 border-yellow-400 text-yellow-400 duration-300 transition-colors 
+                hover:bg-gradient-to-r from-yellow-400 to-yellow-50 px-8 py-4 rounded-full font-bold text-lg shadow-lg overflow-hidden hover:text-black"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -390,13 +391,13 @@ const Header = () => {
                   transition={{
                     type: "tween",
                     ease: "easeInOut",
-                    duration: 0.3,
+                    duration: .6,
                   }}
                 />
               </motion.button>
 
               <motion.button
-                className="group relative border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full font-bold text-lg hover:text-black transition-colors duration-300 overflow-hidden"
+                className="group relative border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full font-bold text-lg hover:bg-gradient-to-r from-yellow-400 to-yellow-50 hover:text-black transition-colors duration-300 overflow-hidden"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -418,7 +419,7 @@ const Header = () => {
 
           {/* Profile Image and Skills Section */}
           <motion.div
-            className="relative w-full max-w-6xl mx-auto py-16"
+            className="relative w-full max-w-6xl mx-auto py-10"
             variants={itemVariants}
           >
             {/* Profile Image */}
