@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence  } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Mock icons since we don't have react-icons
 const IconWrapper = ({ children, className }) => (
@@ -11,19 +11,39 @@ const IconWrapper = ({ children, className }) => (
 
 const techStack = [
   { name: "React", icon: "react.svg", color: "from-blue-400 to-blue-600" },
-  { name: "Tailwind", icon: "tailwind.svg", color: "from-cyan-400 to-cyan-600" },
+  {
+    name: "Tailwind",
+    icon: "tailwind.svg",
+    color: "from-cyan-400 to-cyan-600",
+  },
   { name: "Next.js", icon: "nextjs.png", color: "from-gray-700 to-gray-900" },
-  { name: "MongoDB", icon: "mongodb.png", color: "from-green-400 to-green-600" },
+  {
+    name: "MongoDB",
+    icon: "mongodb.png",
+    color: "from-green-400 to-green-600",
+  },
   { name: "HTML5", icon: "html.svg", color: "from-orange-400 to-orange-600" },
-  { name: "JavaScript", icon : "js.svg", color: "from-yellow-300 to-yellow-500" },
+  {
+    name: "JavaScript",
+    icon: "js.svg",
+    color: "from-yellow-300 to-yellow-500",
+  },
   { name: "Sass", icon: "sass.svg", color: "from-pink-400 to-pink-600" },
-  { name: "CSS3", icon:"css.svg", color: "from-blue-400 to-blue-600" },
-  { name: "Bootstrap", icon: "bootstrap.svg", color: "from-violet-500 to-violet-700" },
-  { name: "Firebase", icon:"firebase.png", color: "from-red-400 to-red-600" },
-  { name: "Express", icon:"express.png", color: "from-gray-600 to-gray-800" },
-  { name: "Git", icon:"githublogo.png", color: "from-gray-600 to-gray-800" },
-  { name: "Redux", icon:"redux.png", color: "from-gray-600 to-gray-800" },
-  { name: "Postman", icon:"postmanlogo.png", color: "from-gray-600 to-gray-800" },
+  { name: "CSS3", icon: "css.svg", color: "from-blue-400 to-blue-600" },
+  {
+    name: "Bootstrap",
+    icon: "bootstrap.svg",
+    color: "from-violet-500 to-violet-700",
+  },
+  { name: "Firebase", icon: "firebase.png", color: "from-red-400 to-red-600" },
+  { name: "Express", icon: "express.png", color: "from-gray-600 to-gray-800" },
+  { name: "Git", icon: "githublogo.png", color: "from-gray-600 to-gray-800" },
+  { name: "Redux", icon: "redux.png", color: "from-gray-600 to-gray-800" },
+  {
+    name: "Postman",
+    icon: "postmanlogo.png",
+    color: "from-gray-600 to-gray-800",
+  },
 ];
 
 const designTools = [
@@ -37,7 +57,6 @@ const devTools = [
   { name: "Postman", color: "from-orange-500 to-red-500" },
 ];
 
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -47,17 +66,24 @@ const containerVariants = {
     },
   },
 };
-
-
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 100,
     rotateX: -15,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     rotateX: 0,
     transition: {
@@ -81,21 +107,19 @@ const cardVariants = {
 
 const About = () => {
   const [activeTab, setActiveTab] = useState("tools");
-  const [ motionTab , setMotionTab ] = useState(false)
-  
-  useEffect(()=>{
-      console.log("changed")
-      setMotionTab(true)
+  const [motionTab, setMotionTab] = useState(false);
 
-  },[activeTab])
+  useEffect(() => {
+    console.log("changed");
+    setMotionTab(true);
+  }, [activeTab]);
 
-  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-slate-900/40 to-slate-900"></div>
-        <motion.div 
+        <motion.div
           className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
@@ -104,10 +128,10 @@ const About = () => {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"
           animate={{
             x: [0, -100, 0],
@@ -116,7 +140,7 @@ const About = () => {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
         />
       </div>
@@ -129,7 +153,7 @@ const About = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <motion.h1 
+          <motion.h1
             className="text-4xl sm:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent mb-6"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -137,18 +161,19 @@ const About = () => {
             transition={{
               duration: 5,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           >
             About Me
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Crafting digital experiences with passion, precision, and a touch of magic ✨
+            Crafting digital experiences with passion, precision, and a touch of
+            magic ✨
           </motion.p>
         </motion.div>
 
@@ -173,9 +198,20 @@ const About = () => {
                   <h3 className="text-2xl font-bold text-white">Who I Am</h3>
                 </div>
                 <div className="space-y-4 text-gray-300 leading-relaxed">
-                  <p>I am a passionate web developer dedicated to building clean, modern, and efficient digital experiences that make a difference.</p>
-                  <p>My background combines both design aesthetics and front-end coding skills, allowing me to deliver visually stunning and performant interfaces.</p>
-                  <p>I thrive on turning complex problems into intuitive, user-friendly solutions that users love to interact with.</p>
+                  <p>
+                    I am a passionate web developer dedicated to building clean,
+                    modern, and efficient digital experiences that make a
+                    difference.
+                  </p>
+                  <p>
+                    My background combines both design aesthetics and front-end
+                    coding skills, allowing me to deliver visually stunning and
+                    performant interfaces.
+                  </p>
+                  <p>
+                    I thrive on turning complex problems into intuitive,
+                    user-friendly solutions that users love to interact with.
+                  </p>
                 </div>
               </div>
             </div>
@@ -205,9 +241,9 @@ const About = () => {
                     "Performance-first development",
                     "Mobile-responsive solutions",
                     "Collaborative team player",
-                    "Continuous learning mindset"
+                    "Continuous learning mindset",
                   ].map((skill, index) => (
-                    <motion.div 
+                    <motion.div
                       key={skill}
                       className="flex items-center text-gray-300"
                       initial={{ opacity: 0, x: -20 }}
@@ -225,7 +261,7 @@ const About = () => {
         </div>
 
         {/* Tab Navigation */}
-        <motion.div 
+        <motion.div
           className="flex justify-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -235,88 +271,97 @@ const About = () => {
             {[
               { id: "skills", label: "Technical Skills", icon: "⚡" },
               { id: "design", label: "Design Tools", icon: "🎨" },
-              { id: "tools", label: "Dev Tools", icon: "🛠️" }
+              { id: "tools", label: "Dev Tools", icon: "🛠️" },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`relative px-6 py-3 rounded-full transition-all duration-300 flex items-center space-x-2 ${
-                  activeTab === tab.id 
-                    ? "bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg" 
+                  activeTab === tab.id
+                    ? "bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
                 <span className="text-lg">{tab.icon}</span>
-                <span className="font-medium hidden sm:inline">{tab.label}</span>
+                <span className="font-medium hidden sm:inline">
+                  {tab.label}
+                </span>
               </button>
             ))}
           </div>
         </motion.div>
 
         {/* Skills Grid */}
-     <motion.div
-  variants={containerVariants}
-  initial="hidden"
-  animate="visible" // <-- controlled animation instead of whileInView
-  className="max-w-6xl mx-auto"
->
-  <AnimatePresence mode="popLayout">
-    {activeTab === "skills" && (
-      <motion.div
-        key="skills-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        exit="hidden" // animate out if you switch tab
-        className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
-      >
-        {techStack.map((tech, index) => (
-          <motion.div
-            key={tech.name}
-            variants={itemVariants}
-            whileHover={{ 
-              scale: 1.1, 
-              rotateY: 10,
-              transition: { type: "spring", stiffness: 400, damping: 10 }
-            }}
-            className="group relative"
-          >
-            <div className="relative p-4 sm:p-6 bg-gradient-to-br text-black rounded-full cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 transition-opacity duration-300"></div>
-              <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
-                <div className="transform group-hover:scale-110 transition-transform duration-300">
-                  <img src={tech.icon} alt={tech.name} />
-                </div>
-                <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
-                  {tech.name}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    )}
-  </AnimatePresence>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible" // <-- controlled animation instead of whileInView
+          className="max-w-6xl mx-auto"
+        >
+          <AnimatePresence mode="popLayout">
+            {activeTab === "skills" && (
+              <motion.div
+                key="skills-grid"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden" // animate out if you switch tab
+                className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
+              >
+                {techStack.map((tech, index) => (
+                  <motion.div
+                    key={tech.name}
+                    variants={itemVariants}
+                    whileHover={{
+                      scale: 1.1,
+                      rotateY: 10,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      },
+                    }}
+                    className="group relative"
+                  >
+                    <div className="relative p-4 sm:p-6 bg-gradient-to-br text-black rounded-full cursor-pointer overflow-hidden">
+                      <div className="absolute inset-0 transition-opacity duration-300"></div>
+                      <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                        <div className="transform group-hover:scale-110 transition-transform duration-300">
+                          <img src={tech.icon} alt={tech.name} />
+                        </div>
+                        <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
+                          {tech.name}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-
-          {/* {activeTab === "design" && motionTab && (
+          {activeTab === "design" && motionTab && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {designTools.map((tool, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
+                  whileHover={{
+                    scale: 1.05,
                     rotateX: 5,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                    transition: { type: "spring", stiffness: 400, damping: 10 },
                   }}
                   className="group"
                 >
-                  <div className={`relative p-8 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}>
+                  <div
+                    className={`relative p-8 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}
+                  >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative z-10 text-center">
                       <div className="text-4xl mb-4">🎨</div>
-                      <h3 className="text-white font-bold text-xl">{tool.name}</h3>
+                      <h3 className="text-white font-bold text-xl">
+                        {tool.name}
+                      </h3>
                     </div>
                     {console.log(tool)}
                   </div>
@@ -331,28 +376,32 @@ const About = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
+                  whileHover={{
+                    scale: 1.05,
                     rotateY: 5,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                    transition: { type: "spring", stiffness: 400, damping: 10 },
                   }}
                   className="group"
                 >
-                  <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}>
+                  <div
+                    className={`relative p-6 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}
+                  >
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative z-10 text-center">
                       <div className="text-3xl mb-3">🛠️</div>
-                      <h3 className="text-white font-bold text-lg">{tool.name}</h3>
+                      <h3 className="text-white font-bold text-lg">
+                        {tool.name}
+                      </h3>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-          )} */}
+          )}
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
