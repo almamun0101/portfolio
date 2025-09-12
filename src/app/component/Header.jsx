@@ -213,7 +213,7 @@ const skills = [
   },
   {
     text: "Next.js",
-    icon: "./next.svg",
+    icon: "./nextjs.png",
     color: "from-gray-400 to-gray-600",
     position: { desktop: "top-[45%] right-[5%]", mobile: "order-6" },
     direction: { x: 100, y: 50 },
@@ -457,11 +457,11 @@ const Header = () => {
                   key={idx}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + idx * 0.1 }}
+                  transition={{ duration: 0.1, delay: 0.1 + idx * 0 }}
                   whileHover={{ scale: 1.05 }}
                   onHoverStart={() => setIsHovered(idx)}
                   onHoverEnd={() => setIsHovered(null)}
-                  className={`relative p-4 rounded-xl flex justify-center border backdrop-blur-sm border-yellow-500 hover:border-2 shadow-lg cursor-pointer transition-all duration-300`}
+                  className={`relative p-4 rounded-xl flex justify-center border-2 hover:bg-amber-400 backdrop-blur-sm border-yellow-500 hover:border-2 shadow-lg cursor-pointer transition-all `}
                 >
                   <div className="flex items-center gap-5">
                     <img src={skill.icon} alt={skill.text} className="w-8" />

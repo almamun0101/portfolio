@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence  } from "framer-motion";
 
 // Mock icons since we don't have react-icons
 const IconWrapper = ({ children, className }) => (
@@ -20,7 +20,10 @@ const techStack = [
   { name: "CSS3", icon:"css.svg", color: "from-blue-400 to-blue-600" },
   { name: "Bootstrap", icon: "bootstrap.svg", color: "from-violet-500 to-violet-700" },
   { name: "Firebase", icon:"firebase.png", color: "from-red-400 to-red-600" },
+  { name: "Express", icon:"express.png", color: "from-gray-600 to-gray-800" },
   { name: "Git", icon:"githublogo.png", color: "from-gray-600 to-gray-800" },
+  { name: "Redux", icon:"redux.png", color: "from-gray-600 to-gray-800" },
+  { name: "Postman", icon:"postmanlogo.png", color: "from-gray-600 to-gray-800" },
 ];
 
 const designTools = [
@@ -34,34 +37,18 @@ const devTools = [
   { name: "Postman", color: "from-orange-500 to-red-500" },
 ];
 
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.1, // icons animate one after another
     },
   },
 };
 
-const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.8,
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    },
-  },
-};
+
 
 const cardVariants = {
   hidden: { 
@@ -93,7 +80,15 @@ const cardVariants = {
 };
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState("skills");
+  const [activeTab, setActiveTab] = useState("tools");
+  const [ motionTab , setMotionTab ] = useState(false)
+  
+  useEffect(()=>{
+      console.log("changed")
+      setMotionTab(true)
+
+  },[activeTab])
+
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
@@ -259,47 +254,56 @@ const About = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="max-w-6xl mx-auto"
-        >
-          {activeTab === "skills" && (
-            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-              {techStack.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotateY: 10,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
-                  }}
-                  className="group relative"
-                >
-                  <div className={`relative p-4 sm:p-6  bg-gradient-to-br  text-black rounded-full cursor-pointer overflow-hidden`}>
-                    <div className="absolute inset-0  transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex flex-col items-center  space-y-2 sm:space-y-3">
-                      <div className="transform group-hover:scale-110 transition-transform duration-300">
-                        <img src={tech.icon} alt={tech.name} />
-                      </div>
-                      <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
-                        {tech.name}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+     <motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible" // <-- controlled animation instead of whileInView
+  className="max-w-6xl mx-auto"
+>
+  <AnimatePresence mode="popLayout">
+    {activeTab === "skills" && (
+      <motion.div
+        key="skills-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden" // animate out if you switch tab
+        className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
+      >
+        {techStack.map((tech, index) => (
+          <motion.div
+            key={tech.name}
+            variants={itemVariants}
+            whileHover={{ 
+              scale: 1.1, 
+              rotateY: 10,
+              transition: { type: "spring", stiffness: 400, damping: 10 }
+            }}
+            className="group relative"
+          >
+            <div className="relative p-4 sm:p-6 bg-gradient-to-br text-black rounded-full cursor-pointer overflow-hidden">
+              <div className="absolute inset-0 transition-opacity duration-300"></div>
+              <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                <div className="transform group-hover:scale-110 transition-transform duration-300">
+                  <img src={tech.icon} alt={tech.name} />
+                </div>
+                <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
+                  {tech.name}
+                </span>
+              </div>
             </div>
-          )}
+          </motion.div>
+        ))}
+      </motion.div>
+    )}
+  </AnimatePresence>
 
-          {activeTab === "design" && (
+
+          {/* {activeTab === "design" && motionTab && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {designTools.map((tool, index) => (
                 <motion.div
-                  key={tool.name}
+                  key={index}
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.05, 
@@ -314,6 +318,7 @@ const About = () => {
                       <div className="text-4xl mb-4">🎨</div>
                       <h3 className="text-white font-bold text-xl">{tool.name}</h3>
                     </div>
+                    {console.log(tool)}
                   </div>
                 </motion.div>
               ))}
@@ -324,7 +329,7 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {devTools.map((tool, index) => (
                 <motion.div
-                  key={tool.name}
+                  key={index}
                   variants={itemVariants}
                   whileHover={{ 
                     scale: 1.05, 
@@ -343,7 +348,7 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
-          )}
+          )} */}
         </motion.div>
 
         {/* Call to Action */}
