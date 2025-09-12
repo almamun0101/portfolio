@@ -106,13 +106,9 @@ const cardVariants = {
 };
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState("tools");
+  const [activeTab, setActiveTab] = useState("skills");
   const [motionTab, setMotionTab] = useState(false);
 
-  useEffect(() => {
-    console.log("changed");
-    setMotionTab(true);
-  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
