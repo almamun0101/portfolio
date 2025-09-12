@@ -47,14 +47,14 @@ const techStack = [
 ];
 
 const designTools = [
-  { name: "Figma", color: "from-purple-500 to-pink-500" },
-  { name: "Adobe XD", color: "from-purple-600 to-blue-500" },
+  { name: "Figma", icon:"figma.png", color: "from-purple-500 to-pink-500" },
+  { name: "Adobe XD",  icon:"adobexd.png", color: "from-purple-600 to-blue-500" },
 ];
 
 const devTools = [
-  { name: "VS Code", color: "from-blue-500 to-blue-700" },
-  { name: "GitHub", color: "from-gray-700 to-gray-900" },
-  { name: "Postman", color: "from-orange-500 to-red-500" },
+  { name: "VS Code", icon:"vscodelogo.png",  color: "from-blue-500 to-blue-700" },
+  { name: "GitHub", icon:"githublogo.png",  color: "from-gray-700 to-gray-900" },
+  { name: "Postman", icon:"postmanlogo.png",  color: "from-orange-500 to-red-500" },
 ];
 
 const containerVariants = {
@@ -282,8 +282,8 @@ const About = () => {
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                <span className="text-lg">{tab.icon}</span>
-                <span className="font-medium hidden sm:inline">
+                <span className="text-lg hidden">{tab.icon}</span>
+                <span className="font-medium  sm:inline">
                   {tab.label}
                 </span>
               </button>
@@ -306,7 +306,7 @@ const About = () => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden" // animate out if you switch tab
-                className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"
+                className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-8 gap-4 sm:gap-6"
               >
                 {techStack.map((tech, index) => (
                   <motion.div
@@ -327,7 +327,7 @@ const About = () => {
                       <div className="absolute inset-0 transition-opacity duration-300"></div>
                       <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
                         <div className="transform group-hover:scale-110 transition-transform duration-300">
-                          <img src={tech.icon} alt={tech.name} />
+                          <img src={tech.icon} alt={tech.name} className="w-15 "/>
                         </div>
                         <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
                           {tech.name}
@@ -341,7 +341,7 @@ const About = () => {
           </AnimatePresence>
 
           {activeTab === "design" && motionTab && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="grid grid-cols-2  gap-1 max-w-lg mx-auto">
               {designTools.map((tool, index) => (
                 <motion.div
                   key={index}
@@ -353,25 +353,24 @@ const About = () => {
                   }}
                   className="group"
                 >
-                  <div
-                    className={`relative p-8 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="text-4xl mb-4">🎨</div>
-                      <h3 className="text-white font-bold text-xl">
-                        {tool.name}
-                      </h3>
+                 <div className="relative p-4 sm:p-6 bg-gradient-to-br text-black rounded-full cursor-pointer overflow-hidden">
+                      <div className="absolute inset-0 transition-opacity duration-300"></div>
+                      <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                        <div className="transform group-hover:scale-110 transition-transform duration-300">
+                          <img src={tool.icon} alt={tool.name} className="w-15 h-15 lg:w-20 lg:h-20  "/>
+                        </div>
+                        <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
+                          {tool.name}
+                        </span>
+                      </div>
                     </div>
-                    {console.log(tool)}
-                  </div>
                 </motion.div>
               ))}
             </div>
           )}
 
           {activeTab === "tools" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-3 lg:gap-6 max-w-xl mx-auto">
               {devTools.map((tool, index) => (
                 <motion.div
                   key={index}
@@ -383,17 +382,17 @@ const About = () => {
                   }}
                   className="group"
                 >
-                  <div
-                    className={`relative p-6 rounded-2xl bg-gradient-to-br ${tool.color} shadow-xl cursor-pointer overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 text-center">
-                      <div className="text-3xl mb-3">🛠️</div>
-                      <h3 className="text-white font-bold text-lg">
-                        {tool.name}
-                      </h3>
+                   <div className="relative p-4 sm:p-6 bg-gradient-to-br text-black rounded-full cursor-pointer overflow-hidden">
+                      <div className="absolute inset-0 transition-opacity duration-300"></div>
+                      <div className="relative z-10 flex flex-col items-center space-y-2 sm:space-y-3">
+                        <div className="transform group-hover:scale-110 transition-transform duration-300">
+                          <img src={tool.icon} alt={tool.name} className="w-15 "/>
+                        </div>
+                        <span className="text-white font-medium text-xs sm:text-sm text-center leading-tight">
+                          {tool.name}
+                        </span>
+                      </div>
                     </div>
-                  </div>
                 </motion.div>
               ))}
             </div>
@@ -410,7 +409,7 @@ const About = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300"
+            className="px-4 py-3 md:px-6 md:py-6 bg-gradient-to-r text-xs from-purple-500 to-cyan-500 text-white font-bold rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300"
           >
             Let's Build Something Amazing Together
           </motion.button>
